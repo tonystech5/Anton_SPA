@@ -12,7 +12,8 @@ const STATE = {
   isSpeaking: false,
   speechUtterance: null,
   currentReportText: '',
-  currentStockData: null
+  currentStockData: null,
+  userProfile: localStorage.getItem('user_investor_profile') || 'long-term'
 };
 
 // --- Curated Demo Datasets (Guarantees Instant High Quality Results for Mom) ---
@@ -57,7 +58,39 @@ Apple Inc. remains a cornerstone of global technology and personal computing. Th
 Apple generates extraordinary free cash flow. While device sales experience seasonal surges during autumn launch events, the Services division provides a steady, high-margin monthly subscription income stream.
 
 #### Investment Verdict
-Apple is widely regarded as a low-to-moderate risk holding suitable for steady long-term capital preservation and steady wealth growth.`
+Apple is widely regarded as a low-to-moderate risk holding suitable for steady long-term capital preservation and steady wealth growth.`,
+    profiles: {
+      'long-term': {
+        verdictBadge: '🚀 Outstanding Long-Term Compounding Foundation',
+        verdictClass: 'positive',
+        summary: 'For investors with a decade or more ahead, Apple provides an exceptional engine for wealth building. Millions of consumers upgrade devices automatically, while high-margin services (iCloud, Apple Pay) produce expanding recurring cash flow.',
+        takeaways: [
+          { title: '🌱 Decades Horizon Advantage', desc: 'Temporary stock pullbacks represent normal buying opportunities when your investment horizon is 10 to 30 years.' },
+          { title: '📈 High-Margin Expansion', desc: 'Services revenue grows year after year with nearly 70% gross profit margins, powering long-term earnings expansion.' },
+          { title: '🛡️ Capital Security', desc: 'World-class balance sheet with over $160 billion in cash reserves acts as a safety cushion through economic cycles.' }
+        ]
+      },
+      'balanced': {
+        verdictBadge: '⚖️ Core Anchor Stock for Portfolio Stability',
+        verdictClass: 'positive',
+        summary: 'Apple fits cleanly into a balanced portfolio as a premier core holding. It combines low corporate credit risk with steady organic innovation, keeping your overall portfolio resilient.',
+        takeaways: [
+          { title: '🏛️ Enterprise Market Scale', desc: 'Massive scale stabilizes portfolio value during broader economic uncertainty.' },
+          { title: '💵 Dividends & Share Buybacks', desc: 'Returns tens of billions to shareholders annually through growing dividend payouts and massive share repurchases.' },
+          { title: '⚙️ Moderate Position Sizing', desc: 'Recommended as a 5% to 10% anchor holding alongside other non-tech sector leaders.' }
+        ]
+      },
+      'preservation': {
+        verdictBadge: '🛡️ High Safety, Low Dividend Yield',
+        verdictClass: 'neutral',
+        summary: 'Apple offers top-tier capital safety and low default risk, making it a safe place to store wealth. However, its dividend yield (~0.5%) is modest for investors who need immediate monthly or quarterly cash income.',
+        takeaways: [
+          { title: '🔒 Principal Protection', desc: 'Extremely resilient business model preserves your initial capital with low default risk.' },
+          { title: '💵 Income Considerations', desc: 'Low current yield (~0.5%) means income-focused investors should pair Apple with higher-yielding dividend stocks like Coca-Cola.' },
+          { title: '🧘 Peace of Mind', desc: 'Global household brand status guarantees peace of mind without needing daily market monitoring.' }
+        ]
+      }
+    }
   },
 
   TSLA: {
@@ -100,7 +133,39 @@ Tesla, Inc. is a high-growth technology and clean energy pioneer. Unlike traditi
 Tesla's Energy Storage division (Megapacks) is expanding rapidly alongside EV sales, providing a second major revenue engine. Long-term bulls focus heavily on Tesla's AI and autonomous vehicle fleet potential.
 
 #### Investment Verdict
-Best suited for growth-focused investors who are comfortable with temporary price swings and believe in long-term electrification.`
+Best suited for growth-focused investors who are comfortable with temporary price swings and believe in long-term electrification.`,
+    profiles: {
+      'long-term': {
+        verdictBadge: '🚀 High-Upside Innovation Engine for Multi-Decade Runways',
+        verdictClass: 'positive',
+        summary: 'For investors with 15 to 30 years ahead, Tesla offers transformative upside potential across electric vehicles, energy storage, full self-driving AI, and robotics. Long timeframes easily absorb short-term price swings.',
+        takeaways: [
+          { title: '⚡ Multi-Decade Tech Tailwinds', desc: 'Leading the global transition to clean energy, electric transit, and autonomous robotics.' },
+          { title: '🎢 Embracing Volatility', desc: 'Short-term price swings of 30-40% are normal for high-growth tech — long horizons turn dips into accumulation windows.' },
+          { title: '🤖 Massive Software Upside', desc: 'Full Self-Driving software and Robotaxi fleets could unlock unprecedented high-margin software revenues.' }
+        ]
+      },
+      'balanced': {
+        verdictBadge: '⚖️ High-Beta Growth Component (Limit Position Size)',
+        verdictClass: 'caution',
+        summary: 'Tesla adds energetic growth to a balanced portfolio, but its wide price swings require disciplined position sizing (e.g. 2-5% max) so short-term pullbacks don\'t disrupt your peace of mind.',
+        takeaways: [
+          { title: '🎯 Sizing Discipline', desc: 'Keep Tesla as a targeted growth satellite position alongside stable blue-chip anchor holdings.' },
+          { title: '📊 Interest Rate Sensitivity', desc: 'Car buying depends on monthly loan rates, making stock price sensitive to federal interest rate changes.' },
+          { title: '🔍 Fundamental Execution', desc: 'Track quarterly vehicle delivery counts and energy storage expansion milestones.' }
+        ]
+      },
+      'preservation': {
+        verdictBadge: '⚠️ Not Suited for Income or Short-Term Capital Safety',
+        verdictClass: 'warning',
+        summary: 'Tesla does not pay a cash dividend and experiences high stock price volatility. Investors seeking capital preservation, price stability, or regular income should prefer defensive consumer or healthcare leaders.',
+        takeaways: [
+          { title: '❌ Zero Dividend Yield', desc: 'All profits are re-invested into factories and AI research, yielding $0 in current dividend income.' },
+          { title: '🎢 High Price Fluctuation', desc: 'Large short-term price pullbacks make Tesla unsuitable for short investment horizons.' },
+          { title: '🛡️ Safer Alternatives', desc: 'Consider low-volatility holdings like Procter & Gamble or Johnson & Johnson for principal preservation.' }
+        ]
+      }
+    }
   },
 
   NVDA: {
@@ -143,7 +208,39 @@ NVIDIA Corporation is at the epicenter of the global artificial intelligence exp
 NVIDIA's revenue has surged dramatically over recent quarters as demand for AI hardware continues to outpace available supply.
 
 #### Investment Verdict
-NVIDIA offers industry-leading growth backed by massive cash profits, though investors should expect normal pullbacks after huge historical rallies.`
+NVIDIA offers industry-leading growth backed by massive cash profits, though investors should expect normal pullbacks after huge historical rallies.`,
+    profiles: {
+      'long-term': {
+        verdictBadge: '🚀 Premier High-Growth AI Leader over Decades',
+        verdictClass: 'positive',
+        summary: 'For investors building wealth over 10 to 30 years, NVIDIA offers front-row participation in the artificial intelligence revolution. Long horizons absorb cyclical chip sector fluctuations as computing demand scales.',
+        takeaways: [
+          { title: '🌱 Generational AI Wave', desc: 'Hardware backbone powering global generative AI, cloud computing, and autonomous software.' },
+          { title: '📈 High Operating Margins', desc: 'CUDA software ecosystem establishes deep competitive moat with high profit margin retention.' },
+          { title: '🔄 Long Runway Accumulation', desc: 'Allows you to dollar-cost average into positions without stressing over temporary quarter-to-quarter price dips.' }
+        ]
+      },
+      'balanced': {
+        verdictBadge: '⚖️ High-Growth Component (Controlled Position Size)',
+        verdictClass: 'neutral',
+        summary: 'NVIDIA provides powerful upside to a balanced portfolio, but its rapid price rallies mean position sizes should be balanced alongside steady consumer staples.',
+        takeaways: [
+          { title: '🎯 Growth Engine', desc: 'Injects technological expansion into a portfolio balanced with lower-beta income stocks.' },
+          { title: '🛡️ Portfolio Rebalancing', desc: 'Periodically trim excess profits back to target weights (e.g. 3-5%) to locked-in gains.' },
+          { title: '📊 Industry Monitoring', desc: 'Track enterprise AI data center capital expenditures across cloud giants.' }
+        ]
+      },
+      'preservation': {
+        verdictBadge: '⚠️ Higher Price Volatility for Income Seekers',
+        verdictClass: 'caution',
+        summary: 'NVIDIA pays a very modest dividend yield (~0.1%) as most profits fund future R&D. Investors needing immediate dividend income or extreme price stability should prioritize defensive holdings.',
+        takeaways: [
+          { title: '💵 Minimal Cash Yield', desc: 'Dividend yield (~0.1%) is minimal compared to defensive dividend stocks like Procter & Gamble or Coca-Cola.' },
+          { title: '🎢 Wider Price Swings', desc: 'Rapid price swings can be unsettling if short-term capital protection is your main goal.' },
+          { title: '🛡️ Defensive Alternatives', desc: 'Consider low-volatility utility or healthcare stocks for principal safety.' }
+        ]
+      }
+    }
   },
 
   KO: {
@@ -186,7 +283,39 @@ The Coca-Cola Company is a classic conservative investment choice. Rather than s
 Coca-Cola distributes a reliable quarterly cash dividend payout, making it a favorite holding for retirees and risk-averse investors seeking peace of mind.
 
 #### Investment Verdict
-An exceptional defensive anchor stock for steady dividend income and capital preservation.`
+An exceptional defensive anchor stock for steady dividend income and capital preservation.`,
+    profiles: {
+      'long-term': {
+        verdictBadge: '🌱 Steady Defensive Anchor with Dividend Compounding',
+        verdictClass: 'positive',
+        summary: 'While Coca-Cola moves at a calmer pace than tech giants, automatically re-investing its 3%+ dividend yield over decades creates a powerful compound snowball effect.',
+        takeaways: [
+          { title: '🔄 Re-investment Snowball', desc: 'Re-investing quarterly dividends automatically accumulates additional shares without depositing extra cash.' },
+          { title: '🛡️ Inflation Resilience', desc: 'Essential brand strength allows Coca-Cola to raise beverage prices gently over time to keep pace with inflation.' },
+          { title: '🧘 Stress-Free Holding', desc: 'Zero technology obsolescence risk — people will drink Coke and Sprite 30 years from now just as they do today.' }
+        ]
+      },
+      'balanced': {
+        verdictBadge: '⚖️ Ideal Volatility Counterweight',
+        verdictClass: 'positive',
+        summary: 'Coca-Cola is the perfect shock absorber for a balanced portfolio. When growth stocks experience temporary market pullbacks, Coca-Cola holds firm and continues paying dividend cash.',
+        takeaways: [
+          { title: '🛡️ Low Beta & Smooth Movement', desc: 'Stock price fluctuates significantly less than the broader market, steadying overall portfolio value.' },
+          { title: '💵 Reliable Cash Receipts', desc: 'Provides consistent quarterly dividend income to help balance higher-risk growth holdings.' },
+          { title: '🌐 Global Footprint', desc: 'Sales in over 200 countries ensure revenue stability across diverse international economies.' }
+        ]
+      },
+      'preservation': {
+        verdictBadge: '💵 Top-Tier Capital Preservation & Income Gold Standard',
+        verdictClass: 'positive',
+        summary: 'Coca-Cola is an absolute premier choice for capital preservation and dividend income. With 62 consecutive years of annual dividend increases, it offers exceptional peace of mind and steady cash flow.',
+        takeaways: [
+          { title: '👑 Dividend King (62 Years)', desc: 'Over six decades of uninterrupted annual dividend payout increases offer supreme income dependability.' },
+          { title: '🛡️ Recesssion Proof', desc: 'Beverage sales remain strong regardless of economic cycles or broader market downturns.' },
+          { title: '🧘 Supreme Peace of Mind', desc: 'Minimal stock price volatility allows you to sleep soundly knowing your principal is safe.' }
+        ]
+      }
+    }
   },
 
   JNJ: {
@@ -375,6 +504,34 @@ Visa is a tollbooth on global economic activity. By facilitating digital payment
   }
 };
 
+// --- Investor Profile Configurations & Terminology ---
+const PROFILE_CONFIGS = {
+  'long-term': {
+    key: 'long-term',
+    title: 'Long-Term Growth (10–30+ Years)',
+    icon: '🌱',
+    heading: 'Tailored Perspective: Long-Term Growth Horizon',
+    subheading: 'Personalized analysis for long-horizon compounding & asset accumulation',
+    bannerText: '<strong>Active Profile: Long-Term Growth (10–30+ Years)</strong> — Ideal for early-career investors or long compounding horizons. Emphasizes business growth and expansion over short-term market fluctuations.'
+  },
+  'balanced': {
+    key: 'balanced',
+    title: 'Balanced Horizon (Mid-Term Goals)',
+    icon: '⚖️',
+    heading: 'Tailored Perspective: Balanced Portfolio Growth',
+    subheading: 'Personalized analysis balancing growth opportunities with risk management',
+    bannerText: '<strong>Active Profile: Balanced Horizon (Mid-Term Goals)</strong> — Ideal for investors seeking healthy capital growth while moderating overall portfolio volatility with blue-chip market leaders.'
+  },
+  'preservation': {
+    key: 'preservation',
+    title: 'Income & Capital Preservation Focus',
+    icon: '🛡️',
+    heading: 'Tailored Perspective: Capital Safety & Dividend Cash Flow',
+    subheading: 'Personalized analysis prioritizing reliable dividends, low price volatility, and peace of mind',
+    bannerText: '<strong>Active Profile: Income & Capital Preservation</strong> — Ideal for shorter time horizons or income seekers. Focuses on dividend stability, low stock price swings, and capital protection.'
+  }
+};
+
 // --- DOM References ---
 const DOM = {
   tickerForm: document.getElementById('ticker-form'),
@@ -414,6 +571,16 @@ const DOM = {
   resVerdictBadge: document.getElementById('res-verdict-badge'),
   resRiskBadge: document.getElementById('res-risk-badge'),
   resMomSummaryText: document.getElementById('res-mom-summary-text'),
+
+  // Profile Insight Card DOM elements
+  resProfileAvatar: document.getElementById('res-profile-avatar'),
+  resProfileHeading: document.getElementById('res-profile-heading'),
+  resProfileSubheading: document.getElementById('res-profile-subheading'),
+  resProfileVerdictBadge: document.getElementById('res-profile-verdict-badge'),
+  resProfileSummaryText: document.getElementById('res-profile-summary-text'),
+  resProfileTakeaways: document.getElementById('res-profile-takeaways'),
+  profileActiveBanner: document.getElementById('profile-active-banner'),
+  profileBannerText: document.getElementById('profile-banner-text'),
   
   resRatingBanner: document.getElementById('res-rating-banner'),
   resRatingIcon: document.getElementById('res-rating-icon'),
@@ -456,6 +623,7 @@ function init() {
   setupEventListeners();
   setupTooltips();
   setupCategoryFilters();
+  setInvestorProfile(STATE.userProfile);
   
   // Fill modal inputs with saved keys if present
   if (DOM.modalTwelveDataKey) DOM.modalTwelveDataKey.value = STATE.twelveDataKey;
@@ -464,6 +632,21 @@ function init() {
 
 // --- Setup Event Listeners ---
 function setupEventListeners() {
+  // Investor profile selection buttons (Hero & Results panel)
+  document.querySelectorAll('#main-profile-selector .profile-option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const profileKey = btn.getAttribute('data-profile');
+      setInvestorProfile(profileKey);
+    });
+  });
+
+  document.querySelectorAll('.profile-switch-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const profileKey = btn.getAttribute('data-profile');
+      setInvestorProfile(profileKey);
+    });
+  });
+
   // Ticker search form
   DOM.tickerForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -872,8 +1055,130 @@ function renderStockResults(data) {
   // Store text for Speech synthesis
   STATE.currentReportText = `${data.companyName}. Summary for investors: ${data.momSummary}. Key strengths include: ${data.strengths.join('. ')}. Key risks include: ${data.risks.join('. ')}.`;
 
+  // Render Investor Profile Card
+  renderProfileInsightCard(data, STATE.userProfile);
+
   // Render Chart
   renderChart(data.chartLabels, data.chartData, data.isPositive);
+}
+
+// --- Investor Profile State & Rendering ---
+function setInvestorProfile(profileKey) {
+  if (!PROFILE_CONFIGS[profileKey]) profileKey = 'long-term';
+  STATE.userProfile = profileKey;
+  localStorage.setItem('user_investor_profile', profileKey);
+
+  // Update active class on main profile selector buttons
+  document.querySelectorAll('#main-profile-selector .profile-option-btn').forEach(btn => {
+    if (btn.getAttribute('data-profile') === profileKey) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  // Update active class on result switch buttons
+  document.querySelectorAll('.profile-switch-btn').forEach(btn => {
+    if (btn.getAttribute('data-profile') === profileKey) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  // Update banner text
+  const cfg = PROFILE_CONFIGS[profileKey];
+  if (DOM.profileBannerText && cfg) {
+    DOM.profileBannerText.innerHTML = cfg.bannerText;
+  }
+
+  // Update report card if stock is currently rendered
+  if (STATE.currentStockData) {
+    renderProfileInsightCard(STATE.currentStockData, profileKey);
+  }
+}
+
+function renderProfileInsightCard(data, profileKey) {
+  const cfg = PROFILE_CONFIGS[profileKey] || PROFILE_CONFIGS['long-term'];
+  const profileData = getProfileInsight(data, profileKey);
+
+  if (DOM.resProfileAvatar) DOM.resProfileAvatar.textContent = cfg.icon;
+  if (DOM.resProfileHeading) DOM.resProfileHeading.textContent = cfg.heading;
+  if (DOM.resProfileSubheading) DOM.resProfileSubheading.textContent = cfg.subheading;
+  
+  if (DOM.resProfileVerdictBadge) {
+    DOM.resProfileVerdictBadge.textContent = profileData.verdictBadge;
+    DOM.resProfileVerdictBadge.className = `verdict-pill ${profileData.verdictClass || 'positive'}`;
+  }
+
+  if (DOM.resProfileSummaryText) {
+    DOM.resProfileSummaryText.textContent = profileData.summary;
+  }
+
+  if (DOM.resProfileTakeaways) {
+    DOM.resProfileTakeaways.innerHTML = '';
+    (profileData.takeaways || []).forEach(item => {
+      const el = document.createElement('div');
+      el.className = 'profile-takeaway-item';
+      el.innerHTML = `
+        <div class="profile-takeaway-title">${escapeHtml(item.title)}</div>
+        <div class="profile-takeaway-desc">${escapeHtml(item.desc)}</div>
+      `;
+      DOM.resProfileTakeaways.appendChild(el);
+    });
+  }
+}
+
+function getProfileInsight(stock, profileKey) {
+  if (stock.profiles && stock.profiles[profileKey]) {
+    return stock.profiles[profileKey];
+  }
+
+  const isTechOrGrowth = (stock.sector || '').toLowerCase().includes('tech') || 
+                         (stock.sector || '').toLowerCase().includes('software') || 
+                         (stock.sector || '').toLowerCase().includes('semiconductor') ||
+                         (stock.sector || '').toLowerCase().includes('auto');
+
+  const isDefensive = (stock.sector || '').toLowerCase().includes('consumer') || 
+                      (stock.sector || '').toLowerCase().includes('health') || 
+                      (stock.sector || '').toLowerCase().includes('beverage') || 
+                      (stock.sector || '').toLowerCase().includes('staple');
+
+  if (profileKey === 'long-term') {
+    return {
+      verdictBadge: isTechOrGrowth ? '🚀 High Compounding Potential over Decades' : '🌱 Steady Long-Term Compounder',
+      verdictClass: 'positive',
+      summary: `For long-term investors with 10 to 30+ years ahead, ${stock.companyName} (${stock.ticker}) offers solid business fundamentals. Having a long time horizon allows you to dollar-cost average and ignore temporary market noise while the business expands over time.`,
+      takeaways: [
+        { title: '🌱 Decades Horizon Advantage', desc: 'Long investment horizons provide full flexibility to ride through short-term market cycles.' },
+        { title: '📈 Business Scale', desc: isTechOrGrowth ? 'Benefits from multi-year secular tailwinds and technology innovation.' : 'Provides a dependable foundation that can be re-invested to compound wealth.' },
+        { title: '🔄 Dollar-Cost Averaging', desc: 'Short-term price dips offer potential long-term accumulation opportunities rather than cause for concern.' }
+      ]
+    };
+  } else if (profileKey === 'balanced') {
+    return {
+      verdictBadge: '⚖️ Core Component for Balanced Portfolios',
+      verdictClass: 'neutral',
+      summary: `${stock.companyName} (${stock.ticker}) serves as a balanced holding. It allows your portfolio to capture upside from broader equity markets while keeping overall portfolio risk measured.`,
+      takeaways: [
+        { title: '🎯 Portfolio Role', desc: 'Fits well alongside other non-correlated industry holdings to promote overall portfolio stability.' },
+        { title: '🛡️ Downside Protection', desc: 'Disciplined position sizing (e.g., 3% to 7%) ensures healthy growth without single-stock vulnerability.' },
+        { title: '📊 Ongoing Fundamentals', desc: 'Review quarterly earnings trends to ensure market position and profit margins remain intact.' }
+      ]
+    };
+  } else {
+    // preservation / income
+    return {
+      verdictBadge: isDefensive ? '🛡️ High Capital Safety & Income Payout' : '⚠️ Moderate Volatility for Income Seekers',
+      verdictClass: isDefensive ? 'positive' : 'caution',
+      summary: `For investors focused on capital preservation, capital safety, and steady cash flow, ${stock.companyName} (${stock.ticker}) should be evaluated based on its price stability and dividend profile.`,
+      takeaways: [
+        { title: '🔒 Principal Protection', desc: isDefensive ? 'Resilient daily product demand provides high safety for saved principal.' : 'Higher stock price fluctuations — consider pairing with low-beta bonds or utility holdings.' },
+        { title: '💵 Income & Yield', desc: isDefensive ? 'Provides reliable quarterly dividend payouts to support income needs or reinvestment.' : 'Prioritizes internal capital reinvestment over high immediate dividend yield.' },
+        { title: '🧘 Peace of Mind', desc: 'Straightforward business model offering clarity without requiring constant stock monitoring.' }
+      ]
+    };
+  }
 }
 
 // --- Chart Rendering with Gradient Fill ---
