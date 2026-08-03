@@ -1,7 +1,7 @@
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-// --- State Management ---
+// --- Application State ---
 const STATE = {
   ticker: '',
   twelveDataKey: localStorage.getItem('twelvedata_key') || '',
@@ -11,17 +11,18 @@ const STATE = {
   speechSynth: window.speechSynthesis || null,
   isSpeaking: false,
   speechUtterance: null,
-  currentReportText: ''
+  currentReportText: '',
+  currentStockData: null
 };
 
-// --- Curated Demo Data (Guarantees Instant Working Experience for Mom/Beginners) ---
+// --- Curated Demo Datasets (Guarantees Instant High Quality Results for Mom) ---
 const DEMO_DATA = {
   AAPL: {
     ticker: 'AAPL',
     companyName: 'Apple Inc.',
     exchange: 'NASDAQ',
     sector: 'Technology & Consumer Electronics',
-    price: 189.84,
+    price: '189.84',
     change: '+2.45',
     changePercent: '+1.31%',
     isPositive: true,
@@ -32,27 +33,31 @@ const DEMO_DATA = {
     peRatio: '29.8 (High Quality Premium)',
     chartData: [178, 179, 181, 180, 182, 185, 184, 183, 186, 188, 187, 189.84],
     chartLabels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Day 9', 'Day 10', 'Day 11', 'Today'],
+    verdictBadge: '🟢 Strong Quality Cornerstone',
+    riskBadge: '🛡️ Moderate Risk',
+    momSummary: 'Apple makes iPhones and computers that hundreds of millions of people buy every single year. They also earn steady monthly cash from iCloud and Apple Music subscriptions, making this one of the safest high-quality technology businesses in the world.',
     ratingTitle: 'Strong Core Portfolio Stock with Unmatched Brand Loyalty',
-    ratingType: 'positive', // positive, neutral, caution
-    overview: 'Apple makes popular personal technology products like the iPhone, iPad, Mac computers, and Apple Watch. They also earn steady revenue from digital subscription services like iCloud, Apple Music, and App Store sales.',
+    ratingType: 'positive',
+    overview: 'Apple designs and sells popular consumer electronics like iPhones, iPads, Macs, and Apple Watches. They also earn steady revenue from digital subscription services like iCloud, Apple Music, and App Store sales.',
     strengths: [
-      'Unmatched brand loyalty: Hundreds of millions of customers worldwide buy new Apple devices every few years.',
-      'Huge recurring revenue from Services (iCloud, App Store, Apple Pay) which generate steady high-margin profit.',
-      'Enormous financial strength with tens of billions in cash flow to weather economic downturns.'
+      'Unmatched customer loyalty: Millions of people buy a new iPhone every few years without considering competitors.',
+      'Huge recurring cash flow from Services (iCloud, Apple Pay, App Store) which generate high profit margins.',
+      'Massive cash reserve cushion allowing Apple to weather economic slowdowns smoothly.'
     ],
     risks: [
-      'High dependence on iPhone sales, which make up over half of total company revenues.',
-      'Slower growth in saturated smart phone markets compared to early technology boom years.',
-      'Geopolitical supply chain risks in overseas manufacturing facilities.'
+      'iPhone sales account for over 50% of company revenues, so smartphone market trends heavily impact earnings.',
+      'Slower percentage growth compared to early tech startup years because Apple is already huge.',
+      'Geopolitical supply chain risks in overseas electronics manufacturing.'
     ],
-    fullReport: `### Executive Summary for Everyday Investors
-Apple Inc. (NASDAQ: AAPL) remains one of the world's most valuable and profitable companies. Designed around seamless integration between hardware devices and software ecosystems, Apple enjoys extraordinary customer retention.
+    fullReport: `### Research Summary for Apple Inc. (AAPL)
 
-#### Financial Performance
-Apple generates strong, dependable cash flow. While hardware sales (iPhones, Macs) experience seasonal ups and downs, Apple's high-margin Services division provides a steady buffer.
+Apple Inc. remains a cornerstone of global technology and personal computing. The company excels at binding hardware, software, and cloud services into a seamless user experience that retains customers for decades.
+
+#### Financial Performance & Health
+Apple generates extraordinary free cash flow. While device sales experience seasonal surges during autumn launch events, the Services division provides a steady, high-margin monthly subscription income stream.
 
 #### Investment Verdict
-Apple is widely viewed as a low-to-moderate risk investment suitable for long-term compounding. Investors seeking steady quality rather than explosive high-risk growth find Apple an appealing cornerstone holding.`
+Apple is widely regarded as a low-to-moderate risk holding suitable for steady long-term capital preservation and steady wealth growth.`
   },
 
   TSLA: {
@@ -60,7 +65,7 @@ Apple is widely viewed as a low-to-moderate risk investment suitable for long-te
     companyName: 'Tesla, Inc.',
     exchange: 'NASDAQ',
     sector: 'Automotive & Clean Energy',
-    price: 218.40,
+    price: '218.40',
     change: '-3.12',
     changePercent: '-1.41%',
     isPositive: false,
@@ -71,27 +76,31 @@ Apple is widely viewed as a low-to-moderate risk investment suitable for long-te
     peRatio: '58.2 (High Growth Expectation)',
     chartData: [240, 235, 228, 230, 222, 215, 220, 225, 221, 219, 218.40],
     chartLabels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Day 9', 'Day 10', 'Today'],
+    verdictBadge: '⚡ High Growth Potential',
+    riskBadge: '🎢 Higher Price Volatility',
+    momSummary: 'Tesla leads the world in electric cars and battery storage systems. While they are innovating rapidly in artificial intelligence and self-driving technology, their stock price moves up and down much faster than traditional companies like Coca-Cola.',
     ratingTitle: 'High Innovation Potential with Short-Term Price Volatility',
     ratingType: 'caution',
-    overview: 'Tesla designs and manufactures electric vehicles (EVs), solar panels, and large-scale battery energy storage systems. They are also investing heavily in artificial intelligence, autonomous self-driving technology, and robotics.',
+    overview: 'Tesla builds electric vehicles (EVs), solar roof systems, and large commercial battery backup systems. They are also heavily investing in artificial intelligence, autonomous self-driving cars, and humanoid robotics.',
     strengths: [
-      'Pioneer and brand leader in electric vehicles with proprietary global Supercharger charging network.',
-      'Industry-leading battery technology, manufacturing efficiency, and vehicle software systems.',
-      'Significant upside potential in autonomous driving (Full Self-Driving) and energy storage.'
+      'Pioneer and market leader in electric vehicles with a fast global Supercharger network.',
+      'Industry-leading battery software, vehicle efficiency, and direct-to-consumer sales model.',
+      'Huge long-term upside potential if full self-driving and robotics become mass market products.'
     ],
     risks: [
-      'Increasing competition from traditional automakers and low-cost Chinese EV manufacturers.',
-      'Higher price volatility and sensitivity to interest rates, which affect auto loans for buyers.',
-      'Valuation rests heavily on future AI and self-driving promises rather than current car sales alone.'
+      'Increasing competition from traditional automakers (Ford, GM) and low-cost Chinese EV brands.',
+      'High stock price sensitivity to interest rates, which affect monthly car loan payments.',
+      'Stock valuation relies heavily on future autonomous AI promises rather than current car sales alone.'
     ],
-    fullReport: `### Executive Summary for Everyday Investors
-Tesla, Inc. (NASDAQ: TSLA) is more than a car company—it is a technology and clean energy leader. However, its stock price can move up and down significantly faster than traditional dividend-paying stocks.
+    fullReport: `### Research Summary for Tesla, Inc. (TSLA)
 
-#### What Drives Growth
-Tesla continues to expand EV production while rapidly scaling its Energy Storage division. Long-term believers point to Tesla's autonomy software and AI developments as major future profit centers.
+Tesla, Inc. is a high-growth technology and clean energy pioneer. Unlike traditional automakers, Tesla operates a software-centric business model with rapid manufacturing iterations.
+
+#### Growth Drivers & Energy Division
+Tesla's Energy Storage division (Megapacks) is expanding rapidly alongside EV sales, providing a second major revenue engine. Long-term bulls focus heavily on Tesla's AI and autonomous vehicle fleet potential.
 
 #### Investment Verdict
-Tesla is best suited for investors with a higher risk tolerance who believe in the transition to clean transportation and autonomous robotics over the next 5 to 10 years.`
+Best suited for growth-focused investors who are comfortable with temporary price swings and believe in long-term electrification.`
   },
 
   NVDA: {
@@ -99,7 +108,7 @@ Tesla is best suited for investors with a higher risk tolerance who believe in t
     companyName: 'NVIDIA Corporation',
     exchange: 'NASDAQ',
     sector: 'Semiconductors & AI Hardware',
-    price: 124.50,
+    price: '124.50',
     change: '+4.10',
     changePercent: '+3.40%',
     isPositive: true,
@@ -110,27 +119,31 @@ Tesla is best suited for investors with a higher risk tolerance who believe in t
     peRatio: '45.1 (Rapid Profit Growth)',
     chartData: [108, 110, 112, 115, 114, 118, 120, 122, 121, 124.50],
     chartLabels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Day 9', 'Today'],
+    verdictBadge: '🚀 AI Revolution Engine',
+    riskBadge: '📈 High Expectations',
+    momSummary: 'NVIDIA builds the high-tech computer processing chips that power artificial intelligence tools like ChatGPT. Because every major tech company needs their chips, NVIDIA has seen record-breaking sales growth recently.',
     ratingTitle: 'Dominant Leader in the Global Artificial Intelligence Boom',
     ratingType: 'positive',
-    overview: 'NVIDIA builds high-performance graphics processor chips (GPUs) and software platforms. Their microchips power virtually all major Artificial Intelligence models, cloud data centers, and advanced computer graphics.',
+    overview: 'NVIDIA makes graphics processing chips (GPUs) and specialized computer systems. Their microchips power artificial intelligence systems, cloud data centers, computer graphics, and video games.',
     strengths: [
-      'Near-monopoly market share (over 80%) in AI data center chips powering ChatGPT and cloud computing.',
-      'Unrivaled CUDA software platform that binds developers and tech giants to NVIDIA hardware.',
-      'Record-breaking revenue growth driven by unprecedented global demand for AI infrastructure.'
+      'Over 80% market share in high-performance AI chips used by Google, Microsoft, Meta, and Amazon.',
+      'Powerful software platform (CUDA) that binds AI developers to NVIDIA hardware.',
+      'Unprecedented profit growth driven by global demand for artificial intelligence computing.'
     ],
     risks: [
-      'High valuation leaves little room for disappointment if tech spending slows down.',
-      'Big customers (Microsoft, Google, Amazon) are developing their own internal custom chips.',
-      'Geopolitical tensions surrounding semiconductor manufacturing suppliers.'
+      'High stock price valuation leaves little room for error if AI infrastructure spending slows down.',
+      'Big tech customers are working to design their own internal custom chips over time.',
+      'Geopolitical manufacturing risks in global semiconductor supply chains.'
     ],
-    fullReport: `### Executive Summary for Everyday Investors
-NVIDIA Corporation (NASDAQ: NVDA) is at the center of the modern tech boom. Every major cloud provider and AI laboratory relies on NVIDIA's chips to train complex AI algorithms.
+    fullReport: `### Research Summary for NVIDIA Corporation (NVDA)
 
-#### Unmatched Market Position
-NVIDIA's profits have surged dramatically over recent quarters as global technology giants scramble to purchase AI server equipment.
+NVIDIA Corporation is at the epicenter of the global artificial intelligence expansion. Every major cloud provider relies on NVIDIA's chips to build and train complex AI models.
+
+#### Market Leadership
+NVIDIA's revenue has surged dramatically over recent quarters as demand for AI hardware continues to outpace available supply.
 
 #### Investment Verdict
-NVIDIA offers high growth potential backed by real cash flow, though investors should expect normal pullbacks after huge historical price surges.`
+NVIDIA offers industry-leading growth backed by massive cash profits, though investors should expect normal pullbacks after huge historical rallies.`
   },
 
   KO: {
@@ -138,7 +151,7 @@ NVIDIA offers high growth potential backed by real cash flow, though investors s
     companyName: 'The Coca-Cola Company',
     exchange: 'NYSE',
     sector: 'Consumer Staples & Beverages',
-    price: 68.20,
+    price: '68.20',
     change: '+0.35',
     changePercent: '+0.52%',
     isPositive: true,
@@ -146,39 +159,45 @@ NVIDIA offers high growth potential backed by real cash flow, though investors s
     yearRange: '$51.55 - $71.10',
     yearRangePct: 85,
     marketCap: '$294 Billion',
-    peRatio: '24.2 (Steady & Defensive)',
+    peRatio: '24.2 (Steady & Safe)',
     chartData: [65, 65.5, 66, 66.2, 66.8, 67, 67.4, 68, 68.2],
     chartLabels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Today'],
+    verdictBadge: '🛡️ Safe Dividend King',
+    riskBadge: '🧘 Very Low Volatility',
+    momSummary: 'Coca-Cola sells beverages in over 200 countries around the world. Because people buy drinks regardless of economic ups and downs, Coca-Cola is famous for paying reliable cash dividend checks to shareholders every single year for over 60 years.',
     ratingTitle: 'Dependable Dividend Income Stock with Low Price Volatility',
     ratingType: 'positive',
-    overview: 'Coca-Cola is a global beverage company offering over 500 brands including Coca-Cola, Sprite, Fanta, Dasani water, Minute Maid, and Costa Coffee across more than 200 countries.',
+    overview: 'Coca-Cola is a global beverage company offering over 500 drink brands including Coca-Cola, Sprite, Fanta, Dasani water, Minute Maid, and Costa Coffee.',
     strengths: [
-      'Extremely safe, defensive business: People buy beverages regardless of economic conditions.',
-      'Dividend King status: Coca-Cola has increased its cash dividend payout to shareholders for over 60 consecutive years.',
-      'Unsurpassed worldwide distribution network and brand recognition.'
+      'Extremely safe, recession-proof business: Beverage sales remain strong regardless of inflation or economic weather.',
+      'Dividend King status: Has increased cash dividend payouts to investors for over 60 consecutive years.',
+      'World-famous brand recognition and unmatched global store distribution network.'
     ],
     risks: [
-      'Slower top-line percentage growth compared to fast-moving technology stocks.',
-      'Health trends pushing consumers away from sugary sodas toward healthier drink options.',
-      'Foreign currency exchange fluctuations affecting international sales conversions.'
+      'Slower percentage growth compared to fast-moving technology companies.',
+      'Health-conscious consumer trends shifting away from sugary sodas.',
+      'Currency conversion fluctuations from international global sales.'
     ],
-    fullReport: `### Executive Summary for Everyday Investors
-The Coca-Cola Company (NYSE: KO) is a classic conservative stock choice. It prioritizes stability and cash dividend payments rather than high-octane growth.
+    fullReport: `### Research Summary for The Coca-Cola Company (KO)
 
-#### Income & Safety
-Coca-Cola distributes a reliable quarterly dividend income stream, making it a favorite for retirees and risk-averse investors seeking peace of mind.
+The Coca-Cola Company is a classic conservative investment choice. Rather than seeking explosive high-risk growth, Coca-Cola prioritizes steady cash flow and dividend income.
+
+#### Income & Dividend Safety
+Coca-Cola distributes a reliable quarterly cash dividend payout, making it a favorite holding for retirees and risk-averse investors seeking peace of mind.
 
 #### Investment Verdict
-An excellent defensive anchor stock for steady dividend income and capital preservation.`
+An exceptional defensive anchor stock for steady dividend income and capital preservation.`
   }
 };
 
-// --- DOM Elements ---
+// --- DOM References ---
 const DOM = {
   tickerForm: document.getElementById('ticker-form'),
   tickerInput: document.getElementById('ticker'),
+  clearSearchBtn: document.getElementById('clear-search-btn'),
   analyzeBtn: document.getElementById('analyze-btn'),
   demoBtn: document.getElementById('demo-btn'),
+  glossaryBtn: document.getElementById('glossary-btn'),
   settingsToggleBtn: document.getElementById('settings-toggle-btn'),
   keysBadge: document.getElementById('keys-badge'),
   
@@ -207,6 +226,10 @@ const DOM = {
   resMarketCap: document.getElementById('res-market-cap'),
   resPeRatio: document.getElementById('res-pe-ratio'),
   
+  resVerdictBadge: document.getElementById('res-verdict-badge'),
+  resRiskBadge: document.getElementById('res-risk-badge'),
+  resMomSummaryText: document.getElementById('res-mom-summary-text'),
+  
   resRatingBanner: document.getElementById('res-rating-banner'),
   resRatingIcon: document.getElementById('res-rating-icon'),
   resRatingTitle: document.getElementById('res-rating-title'),
@@ -220,6 +243,7 @@ const DOM = {
   
   ttsBtn: document.getElementById('tts-btn'),
   ttsText: document.getElementById('tts-text'),
+  compareBtn: document.getElementById('compare-btn'),
   copyReportBtn: document.getElementById('copy-report-btn'),
   printBtn: document.getElementById('print-btn'),
   
@@ -228,22 +252,34 @@ const DOM = {
   keysForm: document.getElementById('keys-form'),
   modalTwelveDataKey: document.getElementById('modal-twelvedata-key'),
   modalOpenRouterKey: document.getElementById('modal-openrouter-key'),
-  useDemoModeBtn: document.getElementById('use-demo-mode-btn')
+  useDemoModeBtn: document.getElementById('use-demo-mode-btn'),
+
+  glossaryModal: document.getElementById('glossary-modal'),
+  closeGlossaryBtn: document.getElementById('close-glossary-btn'),
+
+  compareModal: document.getElementById('compare-modal'),
+  closeCompareBtn: document.getElementById('close-compare-btn'),
+  compareCardsWrapper: document.getElementById('compare-cards-wrapper'),
+
+  tooltipPopover: document.getElementById('global-tooltip-popover'),
+  tooltipText: document.getElementById('tooltip-text')
 };
 
-// --- Initialization ---
+// --- Initialize App ---
 function init() {
   updateKeysBadge();
   setupEventListeners();
+  setupTooltips();
+  setupCategoryFilters();
   
   // Fill modal inputs with saved keys if present
   if (DOM.modalTwelveDataKey) DOM.modalTwelveDataKey.value = STATE.twelveDataKey;
   if (DOM.modalOpenRouterKey) DOM.modalOpenRouterKey.value = STATE.openRouterKey;
 }
 
-// --- Event Listeners ---
+// --- Setup Event Listeners ---
 function setupEventListeners() {
-  // Form submission
+  // Ticker search form
   DOM.tickerForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const query = DOM.tickerInput.value.trim().toUpperCase();
@@ -252,22 +288,65 @@ function setupEventListeners() {
     }
   });
 
+  // Clear search button
+  DOM.tickerInput.addEventListener('input', () => {
+    if (DOM.tickerInput.value) {
+      DOM.clearSearchBtn.classList.remove('hidden');
+    } else {
+      DOM.clearSearchBtn.classList.add('hidden');
+    }
+  });
+
+  DOM.clearSearchBtn.addEventListener('click', () => {
+    DOM.tickerInput.value = '';
+    DOM.clearSearchBtn.classList.add('hidden');
+    DOM.tickerInput.focus();
+  });
+
   // Quick pick chips
   document.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('click', () => {
       const ticker = chip.getAttribute('data-ticker');
       DOM.tickerInput.value = ticker;
+      DOM.clearSearchBtn.classList.remove('hidden');
       runStockAnalysis(ticker);
     });
   });
 
-  // Demo Button
+  // Try Demo Button
   DOM.demoBtn.addEventListener('click', () => {
     DOM.tickerInput.value = 'AAPL';
+    DOM.clearSearchBtn.classList.remove('hidden');
     runStockAnalysis('AAPL', true);
   });
 
-  // Settings Modal Controls
+  // Glossary Modal
+  DOM.glossaryBtn.addEventListener('click', () => {
+    DOM.glossaryModal.classList.remove('hidden');
+  });
+
+  DOM.closeGlossaryBtn.addEventListener('click', () => {
+    DOM.glossaryModal.classList.add('hidden');
+  });
+
+  DOM.glossaryModal.addEventListener('click', (e) => {
+    if (e.target === DOM.glossaryModal) DOM.glossaryModal.classList.add('hidden');
+  });
+
+  // Comparison Modal
+  DOM.compareBtn.addEventListener('click', () => {
+    openCompareModal();
+  });
+
+  DOM.closeCompareBtn.addEventListener('click', () => {
+    DOM.compareModal.classList.add('hidden');
+  });
+
+  DOM.compareModal.addEventListener('click', (e) => {
+    if (e.target === DOM.compareModal) DOM.compareModal.classList.add('hidden');
+  });
+
+  // Settings Modal
   DOM.settingsToggleBtn.addEventListener('click', () => {
     DOM.settingsModal.classList.remove('hidden');
   });
@@ -277,9 +356,7 @@ function setupEventListeners() {
   });
 
   DOM.settingsModal.addEventListener('click', (e) => {
-    if (e.target === DOM.settingsModal) {
-      DOM.settingsModal.classList.add('hidden');
-    }
+    if (e.target === DOM.settingsModal) DOM.settingsModal.classList.add('hidden');
   });
 
   DOM.keysForm.addEventListener('submit', (e) => {
@@ -321,15 +398,67 @@ function setupEventListeners() {
   DOM.printBtn.addEventListener('click', () => window.print());
   DOM.ttsBtn.addEventListener('click', toggleTextToSpeech);
 
-  // Error state fallbacks
+  // Error state retry buttons
   DOM.errorRetryBtn.addEventListener('click', () => {
     if (STATE.ticker) runStockAnalysis(STATE.ticker);
   });
 
   DOM.errorDemoBtn.addEventListener('click', () => {
     DOM.tickerInput.value = 'AAPL';
+    DOM.clearSearchBtn.classList.remove('hidden');
     runStockAnalysis('AAPL', true);
   });
+}
+
+// --- Category Pills Filter ---
+function setupCategoryFilters() {
+  const catPills = document.querySelectorAll('.cat-pill');
+  const chips = document.querySelectorAll('.chip');
+
+  catPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      catPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      const cat = pill.getAttribute('data-cat');
+      chips.forEach(chip => {
+        const chipCat = chip.getAttribute('data-cat');
+        if (cat === 'all' || chipCat === cat) {
+          chip.style.display = 'inline-block';
+        } else {
+          chip.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+// --- Interactive Tooltips ---
+function setupTooltips() {
+  document.querySelectorAll('.info-help-btn').forEach(btn => {
+    btn.addEventListener('mouseenter', (e) => showTooltip(e, btn.getAttribute('data-tooltip')));
+    btn.addEventListener('mouseleave', hideTooltip);
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showTooltip(e, btn.getAttribute('data-tooltip'));
+    });
+  });
+
+  document.addEventListener('click', hideTooltip);
+}
+
+function showTooltip(e, text) {
+  if (!text) return;
+  DOM.tooltipText.textContent = text;
+  DOM.tooltipPopover.classList.remove('hidden');
+
+  const rect = e.target.getBoundingClientRect();
+  DOM.tooltipPopover.style.top = `${rect.bottom + window.scrollY + 8}px`;
+  DOM.tooltipPopover.style.left = `${Math.max(10, rect.left + window.scrollX - 100)}px`;
+}
+
+function hideTooltip() {
+  DOM.tooltipPopover.classList.add('hidden');
 }
 
 function updateKeysBadge() {
@@ -338,40 +467,39 @@ function updateKeysBadge() {
     DOM.keysBadge.textContent = 'Live API Ready';
   } else if (STATE.openRouterKey) {
     DOM.keysBadge.className = 'badge badge-success';
-    DOM.keysBadge.textContent = 'AI Key Set';
+    DOM.keysBadge.textContent = 'AI Key Active';
   } else {
     DOM.keysBadge.className = 'badge badge-warning';
     DOM.keysBadge.textContent = 'Demo Mode';
   }
 }
 
-// --- Main Analysis Logic ---
+// --- Main Stock Analysis Execution ---
 async function runStockAnalysis(ticker, forceDemo = false) {
   STATE.ticker = ticker;
-  stopSpeech(); // stop any active voice playback
+  stopSpeech();
   
-  showLoading('Fetching Stock Data...', `Loading financial metrics and market price for ${ticker}`);
+  showLoading('Fetching Stock Data...', `Connecting to stock market data for ${ticker}`);
   
-  // 1. Check if forced demo or matching demo dataset when keys are missing
   const upperTicker = ticker.toUpperCase();
   const useDemo = forceDemo || STATE.isDemoMode || (!STATE.twelveDataKey && !STATE.openRouterKey);
 
   if (useDemo) {
-    // Artificial smooth loading progression
-    updateProgress(40, 'Analyzing company fundamentals...');
-    await delay(500);
-    updateProgress(80, 'Generating plain-English AI report...');
-    await delay(500);
+    updateProgress(45, 'Translating metrics into plain English...');
+    await delay(400);
+    updateProgress(85, 'Formulating 30-Second Mom Summary...');
+    await delay(400);
     
     const data = DEMO_DATA[upperTicker] || getGenericDemoData(upperTicker);
+    STATE.currentStockData = data;
     renderStockResults(data);
     hideLoading();
     return;
   }
 
-  // 2. Fetch Live Data from Twelve Data
+  // Live Twelve Data API
   try {
-    updateProgress(20, 'Connecting to stock market data...');
+    updateProgress(25, 'Fetching live price history...');
     const [quote, profile, timeSeries] = await Promise.allSettled([
       fetchTwelveData('quote', upperTicker, STATE.twelveDataKey),
       fetchTwelveData('profile', upperTicker, STATE.twelveDataKey),
@@ -383,17 +511,16 @@ async function runStockAnalysis(ticker, forceDemo = false) {
     const tsVal = timeSeries.status === 'fulfilled' ? timeSeries.value : null;
 
     if (!quoteVal || quoteVal.status === 'error' || !quoteVal.close) {
-      // Fallback to demo data smoothly
-      console.warn('Live price fetch failed or limit hit. Switching to fallback data.');
+      console.warn('Live API response missing. Using fallback demo dataset.');
       const fallbackData = DEMO_DATA[upperTicker] || getGenericDemoData(upperTicker);
+      STATE.currentStockData = fallbackData;
       renderStockResults(fallbackData);
       hideLoading();
       return;
     }
 
-    updateProgress(60, 'Consulting AI assistant for research summary...');
+    updateProgress(65, 'Generating clear AI research analysis...');
 
-    // Process Quote & Chart Values
     const parsedPrice = parseFloat(quoteVal.close || quoteVal.previous_close || '100').toFixed(2);
     const parsedChange = parseFloat(quoteVal.change || '0').toFixed(2);
     const parsedPercent = parseFloat(quoteVal.percent_change || '0').toFixed(2);
@@ -410,22 +537,25 @@ async function runStockAnalysis(ticker, forceDemo = false) {
       chartLabels = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Today'];
     }
 
-    // Prepare Prompt for LLM
-    const aiPrompt = `You are a warm, helpful financial advisor explaining stock research to someone who has NEVER programmed or studied finance.
+    // AI OpenRouter Call
+    const aiPrompt = `You are a warm, friendly financial assistant explaining stock research to someone who has never programmed or studied finance.
 Stock: ${upperTicker} (${profileVal?.name || quoteVal.name || upperTicker})
 Current Price: $${parsedPrice}
 Sector: ${profileVal?.sector || 'General Business'}
 Business Description: ${profileVal?.description || 'N/A'}
 
-Provide a structured, encouraging research summary in simple English.
-Please format your output strictly as a JSON object with these fields:
+Provide a structured, encouraging research summary in plain English.
+Respond strictly in JSON format with these exact keys:
 {
+  "verdictBadge": "🟢 Short positive label (e.g., Quality Cornerstone)",
+  "riskBadge": "🛡️ Risk level badge (e.g., Moderate Risk)",
+  "momSummary": "A 2-sentence plain English summary of what the company does and why it is a solid or volatile investment.",
   "ratingTitle": "Short 1-line encouraging summary of overall sentiment",
   "ratingType": "positive" or "neutral" or "caution",
-  "overview": "A 2-sentence plain English explanation of what the company does for a living",
-  "strengths": ["Strength point 1", "Strength point 2", "Strength point 3"],
-  "risks": ["Risk point 1", "Risk point 2", "Risk point 3"],
-  "fullReport": "A detailed markdown report (3 short paragraphs) summarizing performance, growth outlook, and verdict"
+  "overview": "A 2-sentence plain English description of what the company sells.",
+  "strengths": ["Strength 1", "Strength 2", "Strength 3"],
+  "risks": ["Risk 1", "Risk 2", "Risk 3"],
+  "fullReport": "A detailed 3-paragraph markdown report."
 }`;
 
     let aiOutput = null;
@@ -434,28 +564,31 @@ Please format your output strictly as a JSON object with these fields:
         const rawLlmResponse = await callOpenRouter(STATE.openRouterKey, aiPrompt);
         aiOutput = parseAiJsonResponse(rawLlmResponse);
       } catch (err) {
-        console.warn('AI call failed, using smart fallback report:', err);
+        console.warn('AI call error, using formatted fallback:', err);
       }
     }
 
     if (!aiOutput) {
       aiOutput = {
+        verdictBadge: '🟢 Established Market Leader',
+        riskBadge: '🛡️ Moderate Market Risk',
+        momSummary: `${profileVal?.name || upperTicker} operates in the ${profileVal?.sector || 'commercial'} sector. It is an established business with active trading volume on major exchanges.`,
         ratingTitle: `Steady Market Interest in ${profileVal?.name || upperTicker}`,
         ratingType: 'neutral',
         overview: profileVal?.description 
-          ? profileVal.description.slice(0, 250) + '...'
-          : `${profileVal?.name || upperTicker} operates in the ${profileVal?.sector || 'commercial'} sector, providing key products and services to global consumers.`,
+          ? profileVal.description.slice(0, 240) + '...'
+          : `${profileVal?.name || upperTicker} provides key products and services to global consumers.`,
         strengths: [
           `Established market presence in the ${profileVal?.sector || 'industry'} sector.`,
-          `Active liquidity with daily share volume traded on major exchanges.`,
-          `Broad brand recognition among global consumers and business clients.`
+          `High liquidity with daily share volume traded on major exchanges.`,
+          `Recognized brand among global business and retail clients.`
         ],
         risks: [
-          `Susceptible to general economic conditions and market-wide fluctuations.`,
-          `Competitive market dynamics within ${profileVal?.sector || 'their sector'}.`,
-          `Potential impact from changing interest rates and regulatory shifts.`
+          `Susceptible to general stock market and economic fluctuations.`,
+          `Competitive pressures within ${profileVal?.sector || 'their market'}.`,
+          `Impact from macroeconomic factors like interest rates.`
         ],
-        fullReport: `### Research Summary for ${upperTicker}\n\n${profileVal?.name || upperTicker} is an active stock on major exchanges. \n\n#### Key Consideration\nInvestors should review quarterly earnings and general sector trends before investing.`
+        fullReport: `### Research Summary for ${upperTicker}\n\n${profileVal?.name || upperTicker} is an active stock on major exchanges. \n\n#### Key Consideration\nInvestors should review quarterly performance and general market trends.`
       };
     }
 
@@ -475,6 +608,9 @@ Please format your output strictly as a JSON object with these fields:
       peRatio: quoteVal.pe ? `${parseFloat(quoteVal.pe).toFixed(1)}` : 'N/A',
       chartData: chartPrices,
       chartLabels: chartLabels,
+      verdictBadge: aiOutput.verdictBadge,
+      riskBadge: aiOutput.riskBadge,
+      momSummary: aiOutput.momSummary,
       ratingTitle: aiOutput.ratingTitle,
       ratingType: aiOutput.ratingType,
       overview: aiOutput.overview,
@@ -483,15 +619,16 @@ Please format your output strictly as a JSON object with these fields:
       fullReport: aiOutput.fullReport
     };
 
+    STATE.currentStockData = liveData;
     renderStockResults(liveData);
     hideLoading();
   } catch (err) {
     console.error('Error analyzing stock:', err);
-    showError('Could Not Load Stock Data', `We couldn't retrieve information for "${ticker}". Try checking the ticker symbol or click below to view a demo report.`);
+    showError('Could Not Load Stock Data', `We couldn't retrieve information for "${ticker}". Try checking the spelling or click below to view our demo report.`);
   }
 }
 
-// --- Render Helper ---
+// --- Render Results ---
 function renderStockResults(data) {
   DOM.welcomeBanner.classList.add('hidden');
   DOM.errorState.classList.add('hidden');
@@ -513,6 +650,11 @@ function renderStockResults(data) {
   DOM.resYearRangeFill.style.width = `${data.yearRangePct}%`;
   DOM.resMarketCap.textContent = data.marketCap;
   DOM.resPeRatio.textContent = data.peRatio;
+
+  // Mom's Verdict Summary Box
+  DOM.resVerdictBadge.textContent = data.verdictBadge;
+  DOM.resRiskBadge.textContent = data.riskBadge;
+  DOM.resMomSummaryText.textContent = data.momSummary;
 
   // Rating Banner
   DOM.resRatingTitle.textContent = data.ratingTitle;
@@ -541,14 +683,14 @@ function renderStockResults(data) {
   // Full Markdown Report
   DOM.fullReportContent.innerHTML = simpleMarkdownToHtml(data.fullReport);
 
-  // Store for Speech synthesis
-  STATE.currentReportText = `${data.companyName} stock analysis. Overall sentiment: ${data.ratingTitle}. ${data.overview}. Key strengths include: ${data.strengths.join('. ')}. Key risks include: ${data.risks.join('. ')}.`;
+  // Store text for Speech synthesis
+  STATE.currentReportText = `${data.companyName}. Summary for investors: ${data.momSummary}. Key strengths include: ${data.strengths.join('. ')}. Key risks include: ${data.risks.join('. ')}.`;
 
   // Render Chart
   renderChart(data.chartLabels, data.chartData, data.isPositive);
 }
 
-// --- Chart.js Rendering ---
+// --- Chart Rendering with Gradient Fill ---
 function renderChart(labels, dataPoints, isPositive) {
   const ctx = document.getElementById('stockChart').getContext('2d');
   
@@ -556,8 +698,16 @@ function renderChart(labels, dataPoints, isPositive) {
     STATE.chartInstance.destroy();
   }
 
+  const gradient = ctx.createLinearGradient(0, 0, 0, 280);
+  if (isPositive) {
+    gradient.addColorStop(0, 'rgba(5, 150, 105, 0.22)');
+    gradient.addColorStop(1, 'rgba(5, 150, 105, 0.00)');
+  } else {
+    gradient.addColorStop(0, 'rgba(220, 38, 38, 0.22)');
+    gradient.addColorStop(1, 'rgba(220, 38, 38, 0.00)');
+  }
+
   const strokeColor = isPositive ? '#059669' : '#DC2626';
-  const fillColor = isPositive ? 'rgba(5, 150, 105, 0.08)' : 'rgba(220, 38, 38, 0.08)';
 
   STATE.chartInstance = new Chart(ctx, {
     type: 'line',
@@ -567,13 +717,16 @@ function renderChart(labels, dataPoints, isPositive) {
         label: 'Closing Price ($)',
         data: dataPoints,
         borderColor: strokeColor,
-        borderWidth: 3,
-        backgroundColor: fillColor,
+        borderWidth: 3.5,
+        backgroundColor: gradient,
         fill: true,
-        tension: 0.3,
+        tension: 0.35,
         pointRadius: 4,
         pointBackgroundColor: strokeColor,
-        pointHoverRadius: 6
+        pointHoverRadius: 7,
+        pointHoverBackgroundColor: '#FFFFFF',
+        pointHoverBorderColor: strokeColor,
+        pointHoverBorderWidth: 3
       }]
     },
     options: {
@@ -583,12 +736,13 @@ function renderChart(labels, dataPoints, isPositive) {
         legend: { display: false },
         tooltip: {
           backgroundColor: '#0F172A',
-          titleFont: { family: 'Plus Jakarta Sans', size: 13 },
-          bodyFont: { family: 'Outfit', size: 14, weight: 'bold' },
-          padding: 10,
+          titleFont: { family: 'Plus Jakarta Sans', size: 13, weight: 'bold' },
+          bodyFont: { family: 'Outfit', size: 15, weight: 'bold' },
+          padding: 12,
+          cornerRadius: 10,
           displayColors: false,
           callbacks: {
-            label: (context) => ` Price: $${context.parsed.y.toFixed(2)}`
+            label: (context) => ` Closing Price: $${context.parsed.y.toFixed(2)}`
           }
         }
       },
@@ -610,7 +764,72 @@ function renderChart(labels, dataPoints, isPositive) {
   });
 }
 
-// --- Twelve Data API Call ---
+// --- Comparison Modal Rendering ---
+function openCompareModal() {
+  if (!STATE.currentStockData) return;
+  const current = STATE.currentStockData;
+  const benchmark = DEMO_DATA.KO; // Coca-Cola as safe baseline
+
+  DOM.compareCardsWrapper.innerHTML = `
+    <div class="compare-card highlight">
+      <div class="compare-title">🔍 Selected: ${current.companyName} (${current.ticker})</div>
+      <div class="compare-metric-row"><span>Price:</span> <strong>$${current.price}</strong></div>
+      <div class="compare-metric-row"><span>Size (Market Cap):</span> <strong>${current.marketCap}</strong></div>
+      <div class="compare-metric-row"><span>P/E Ratio:</span> <strong>${current.peRatio}</strong></div>
+      <div class="compare-metric-row"><span>Verdict Badge:</span> <strong>${current.verdictBadge}</strong></div>
+      <div class="compare-metric-row"><span>Risk Profile:</span> <strong>${current.riskBadge}</strong></div>
+    </div>
+
+    <div class="compare-card">
+      <div class="compare-title">🥤 Benchmark: The Coca-Cola Co. (KO)</div>
+      <div class="compare-metric-row"><span>Price:</span> <strong>$${benchmark.price}</strong></div>
+      <div class="compare-metric-row"><span>Size (Market Cap):</span> <strong>${benchmark.marketCap}</strong></div>
+      <div class="compare-metric-row"><span>P/E Ratio:</span> <strong>${benchmark.peRatio}</strong></div>
+      <div class="compare-metric-row"><span>Verdict Badge:</span> <strong>${benchmark.verdictBadge}</strong></div>
+      <div class="compare-metric-row"><span>Risk Profile:</span> <strong>${benchmark.riskBadge}</strong></div>
+    </div>
+  `;
+
+  DOM.compareModal.classList.remove('hidden');
+}
+
+// --- Text to Speech Audio Assistant ---
+function toggleTextToSpeech() {
+  if (!STATE.speechSynth) {
+    alert('Voice playback is not supported on this browser.');
+    return;
+  }
+
+  if (STATE.isSpeaking) {
+    stopSpeech();
+    return;
+  }
+
+  if (!STATE.currentReportText) return;
+
+  STATE.speechUtterance = new SpeechSynthesisUtterance(STATE.currentReportText);
+  STATE.speechUtterance.rate = 0.92; // Clear, relaxed pacing for mom
+  STATE.speechUtterance.pitch = 1.0;
+
+  STATE.speechUtterance.onend = () => {
+    STATE.isSpeaking = false;
+    DOM.ttsText.textContent = 'Listen to Report';
+  };
+
+  STATE.speechSynth.speak(STATE.speechUtterance);
+  STATE.isSpeaking = true;
+  DOM.ttsText.textContent = '⏸ Pause Voice';
+}
+
+function stopSpeech() {
+  if (STATE.speechSynth && STATE.isSpeaking) {
+    STATE.speechSynth.cancel();
+    STATE.isSpeaking = false;
+    DOM.ttsText.textContent = 'Listen to Report';
+  }
+}
+
+// --- API Utilities ---
 async function fetchTwelveData(endpoint, ticker, apiKey) {
   const url = `https://api.twelvedata.com/${endpoint}?symbol=${ticker}&interval=1day&outputsize=15&apikey=${apiKey}`;
   const res = await fetch(url);
@@ -618,7 +837,6 @@ async function fetchTwelveData(endpoint, ticker, apiKey) {
   return await res.json();
 }
 
-// --- OpenRouter API Call ---
 async function callOpenRouter(apiKey, promptText) {
   const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
@@ -637,46 +855,6 @@ async function callOpenRouter(apiKey, promptText) {
   return json.choices?.[0]?.message?.content || '';
 }
 
-// --- Text To Speech ---
-function toggleTextToSpeech() {
-  if (!STATE.speechSynth) {
-    alert('Voice playback is not supported on this browser.');
-    return;
-  }
-
-  if (STATE.isSpeaking) {
-    stopSpeech();
-    return;
-  }
-
-  if (!STATE.currentReportText) return;
-
-  STATE.speechUtterance = new SpeechSynthesisUtterance(STATE.currentReportText);
-  STATE.speechUtterance.rate = 0.95; // Friendly clear pacing
-  STATE.speechUtterance.pitch = 1.0;
-
-  STATE.speechUtterance.onend = () => {
-    STATE.isSpeaking = false;
-    DOM.ttsText.textContent = 'Listen';
-    DOM.ttsBtn.classList.remove('btn-primary');
-  };
-
-  STATE.speechSynth.speak(STATE.speechUtterance);
-  STATE.isSpeaking = true;
-  DOM.ttsText.textContent = 'Pause Speech';
-  DOM.ttsBtn.classList.add('btn-primary');
-}
-
-function stopSpeech() {
-  if (STATE.speechSynth && STATE.isSpeaking) {
-    STATE.speechSynth.cancel();
-    STATE.isSpeaking = false;
-    DOM.ttsText.textContent = 'Listen';
-    DOM.ttsBtn.classList.remove('btn-primary');
-  }
-}
-
-// --- Clipboard Copy ---
 function copySummaryToClipboard() {
   if (!STATE.currentReportText) return;
   navigator.clipboard.writeText(STATE.currentReportText).then(() => {
@@ -686,7 +864,6 @@ function copySummaryToClipboard() {
   });
 }
 
-// --- UI Utility Functions ---
 function showLoading(title, subtitle) {
   DOM.welcomeBanner.classList.add('hidden');
   DOM.resultsPanel.classList.add('hidden');
@@ -695,7 +872,7 @@ function showLoading(title, subtitle) {
   
   DOM.loadingTitle.textContent = title;
   DOM.loadingSubtitle.textContent = subtitle;
-  DOM.progressFill.style.width = '15%';
+  DOM.progressFill.style.width = '20%';
 }
 
 function updateProgress(percent, label) {
@@ -760,33 +937,36 @@ function getGenericDemoData(symbol) {
     companyName: `${symbol} Corporation`,
     exchange: 'NYSE / NASDAQ',
     sector: 'General Business & Industry',
-    price: (Math.random() * 150 + 50).toFixed(2),
+    price: '115.40',
     change: '+1.20',
     changePercent: '+0.85%',
     isPositive: true,
-    dayRange: '$110.00 - $115.50',
+    dayRange: '$112.00 - $116.50',
     yearRange: '$85.00 - $140.00',
     yearRangePct: 65,
     marketCap: '$120 Billion',
     peRatio: '22.4',
-    chartData: [100, 102, 101, 104, 103, 106, 108, 107, 110],
+    chartData: [100, 102, 101, 104, 103, 106, 108, 107, 115.40],
     chartLabels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Today'],
-    ratingTitle: `Solid Fundamentals and Core Business Position in ${symbol}`,
+    verdictBadge: '🏢 Solid Business',
+    riskBadge: '🛡️ Moderate Risk',
+    momSummary: `${symbol} is an active public company with steady daily trading volume on major exchanges. It provides products and services in its industry.`,
+    ratingTitle: `Steady Market Interest in ${symbol}`,
     ratingType: 'neutral',
-    overview: `${symbol} provides products and services to global consumers. It maintains active share trading and steady operations in its industry.`,
+    overview: `${symbol} operates steadily within its industry serving global clients and shareholders.`,
     strengths: [
-      `Established operational footprint and industry presence.`,
-      `Active trading volume and liquid market participation.`,
+      `Established business footprint and active share market trading.`,
+      `Liquid trading volume on major stock exchanges.`,
       `Core product line serving a dedicated customer base.`
     ],
     risks: [
-      `General stock market volatility and economic conditions.`,
-      `Industry competition and evolving consumer preferences.`,
-      `Regulatory and supply chain considerations.`
+      `General stock market price swings and economic factors.`,
+      `Industry competition and evolving consumer habits.`,
+      `Macroeconomic conditions like interest rates.`
     ],
-    fullReport: `### Research Note for ${symbol}\n\n${symbol} continues to operate steadily within its market sector. Investors should evaluate overall portfolio allocation and risk preferences before buying.`
+    fullReport: `### Research Note for ${symbol}\n\n${symbol} operates steadily within its market sector.`
   };
 }
 
-// Start app on DOMContentLoaded
+// Start application when DOM is ready
 document.addEventListener('DOMContentLoaded', init);

@@ -3,26 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Stock Research Assistant</title>
+  <title>Smart Stock Assistant - Easy Financial Research</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <!-- Header Navigation -->
+  <!-- Modern Header Navigation -->
   <header class="app-header">
     <div class="header-container">
       <div class="logo-group">
-        <div class="logo-icon">📈</div>
+        <div class="logo-icon-badge">
+          <span class="logo-emoji">📈</span>
+        </div>
         <div>
-          <h1 class="logo-title">Smart Stock Assistant</h1>
-          <p class="logo-subtitle">Simple, easy-to-understand stock research for everyone</p>
+          <div class="logo-title-row">
+            <h1 class="logo-title">Smart Stock Assistant</h1>
+            <span class="logo-tag">For Everyone</span>
+          </div>
+          <p class="logo-subtitle">Simple, easy-to-understand stock research for non-experts</p>
         </div>
       </div>
       
       <div class="header-actions">
-        <button id="demo-btn" class="btn btn-outline-sparkle" title="See an example report instantly without needing API keys">
+        <button id="glossary-btn" class="btn btn-subtle" title="Learn what financial terms mean in simple words">
+          📖 Beginner Glossary
+        </button>
+        <button id="demo-btn" class="btn btn-sparkle" title="See an example report instantly without needing API keys">
           ✨ Try Demo Report
         </button>
         <button id="settings-toggle-btn" class="btn btn-secondary">
@@ -34,11 +42,11 @@
 
   <!-- Main Container -->
   <main class="app-main">
-    <!-- Search & Quick Selection Panel -->
+    <!-- Hero Search & Selection Panel -->
     <section class="panel search-panel">
-      <div class="panel-header">
+      <div class="panel-header-hero">
         <h2>Find Any Stock to Research</h2>
-        <p class="panel-desc">Enter a company name or ticker symbol below, or pick a popular company to start.</p>
+        <p class="panel-desc">Search a company name or ticker symbol, or pick a household brand below to start.</p>
       </div>
 
       <form id="ticker-form" class="search-form">
@@ -48,69 +56,95 @@
             id="ticker" 
             name="ticker" 
             type="text" 
-            placeholder="Search Apple, Tesla, AAPL, MSFT..." 
+            placeholder="Search Apple, Tesla, AAPL, MSFT, Coca-Cola..." 
             autocomplete="off"
             required 
           />
+          <button type="button" id="clear-search-btn" class="clear-icon hidden" title="Clear input">&times;</button>
           <button type="submit" class="btn btn-primary btn-search" id="analyze-btn">
             Analyze Stock
           </button>
         </div>
       </form>
 
-      <!-- Quick Pick Suggestions -->
-      <div class="quick-picks">
-        <span class="quick-picks-label">Quick picks:</span>
-        <div class="quick-picks-chips">
-          <button type="button" class="chip" data-ticker="AAPL" data-name="Apple">🍏 Apple (AAPL)</button>
-          <button type="button" class="chip" data-ticker="MSFT" data-name="Microsoft">💻 Microsoft (MSFT)</button>
-          <button type="button" class="chip" data-ticker="TSLA" data-name="Tesla">🚗 Tesla (TSLA)</button>
-          <button type="button" class="chip" data-ticker="NVDA" data-name="Nvidia">🤖 Nvidia (NVDA)</button>
-          <button type="button" class="chip" data-ticker="AMZN" data-name="Amazon">📦 Amazon (AMZN)</button>
-          <button type="button" class="chip" data-ticker="KO" data-name="Coca-Cola">🥤 Coca-Cola (KO)</button>
-          <button type="button" class="chip" data-ticker="DIS" data-name="Disney">🏰 Disney (DIS)</button>
-          <button type="button" class="chip" data-ticker="SBUX" data-name="Starbucks">☕ Starbucks (SBUX)</button>
+      <!-- Quick Pick Suggestions with Emojis & Filter Tags -->
+      <div class="quick-picks-container">
+        <div class="quick-picks-header">
+          <span class="quick-picks-label">Popular companies to try:</span>
+          <div class="category-pills">
+            <button type="button" class="cat-pill active" data-cat="all">All</button>
+            <button type="button" class="cat-pill" data-cat="tech">Tech Giants</button>
+            <button type="button" class="cat-pill" data-cat="brands">Household Brands</button>
+          </div>
+        </div>
+
+        <div class="quick-picks-chips" id="quick-chips-list">
+          <button type="button" class="chip" data-cat="tech" data-ticker="AAPL" data-name="Apple">🍏 Apple (AAPL)</button>
+          <button type="button" class="chip" data-cat="tech" data-ticker="MSFT" data-name="Microsoft">💻 Microsoft (MSFT)</button>
+          <button type="button" class="chip" data-cat="tech" data-ticker="NVDA" data-name="Nvidia">🤖 Nvidia (NVDA)</button>
+          <button type="button" class="chip" data-cat="brands" data-ticker="TSLA" data-name="Tesla">🚗 Tesla (TSLA)</button>
+          <button type="button" class="chip" data-cat="brands" data-ticker="AMZN" data-name="Amazon">📦 Amazon (AMZN)</button>
+          <button type="button" class="chip" data-cat="brands" data-ticker="KO" data-name="Coca-Cola">🥤 Coca-Cola (KO)</button>
+          <button type="button" class="chip" data-cat="brands" data-ticker="DIS" data-name="Disney">🏰 Disney (DIS)</button>
+          <button type="button" class="chip" data-cat="brands" data-ticker="SBUX" data-name="Starbucks">☕ Starbucks (SBUX)</button>
         </div>
       </div>
     </section>
 
     <!-- Welcome / Explanation Banner (shown when no results yet) -->
     <section id="welcome-banner" class="panel welcome-panel">
+      <div class="welcome-intro">
+        <span class="welcome-badge">🌱 Designed for Beginners</span>
+        <h3>How Smart Stock Assistant Helps You Research</h3>
+        <p>You don't need a finance degree to understand stock investments. Here is what we do for you:</p>
+      </div>
+
       <div class="welcome-grid">
         <div class="welcome-card">
-          <div class="welcome-icon">💡</div>
-          <h3>1. Easy Company Explanations</h3>
-          <p>We translate complex Wall Street financial jargon into plain, clear English anyone can understand.</p>
+          <div class="welcome-card-icon">🗣️</div>
+          <h3>Plain English Summaries</h3>
+          <p>We break down complex Wall Street earnings reports into clear 3-sentence summaries anyone can digest.</p>
         </div>
+
         <div class="welcome-card">
-          <div class="welcome-icon">📊</div>
-          <h3>2. Interactive Price Charts</h3>
-          <p>See price trends over time and see key figures like 52-week highs and price-to-earnings ratios.</p>
+          <div class="welcome-card-icon">📊</div>
+          <h3>Visual Price History</h3>
+          <p>See price charts over time with clear indicator tags showing if a stock is at yearly high or low levels.</p>
         </div>
+
         <div class="welcome-card">
-          <div class="welcome-icon">🎯</div>
-          <h3>3. Clear Strengths & Risks</h3>
-          <p>Get a balanced summary of reasons to consider the stock alongside potential risks to keep in mind.</p>
+          <div class="welcome-card-icon">⚖️</div>
+          <h3>Balanced Strengths & Risks</h3>
+          <p>We present a fair, two-sided view of reasons to consider a stock alongside risks to watch out for.</p>
+        </div>
+
+        <div class="welcome-card">
+          <div class="welcome-card-icon">🔊</div>
+          <h3>Voice Audio Reader</h3>
+          <p>Click "Listen" on any report to hear the AI summary read aloud clearly like a mini financial podcast.</p>
         </div>
       </div>
     </section>
 
-    <!-- Loading Indicator -->
+    <!-- Loading State Panel -->
     <div id="loading-state" class="panel loading-panel hidden">
-      <div class="spinner"></div>
-      <h3 id="loading-title">Gathering financial data...</h3>
-      <p id="loading-subtitle">Fetching latest stock prices, financial figures, and generating AI insights.</p>
+      <div class="loading-animation-wrapper">
+        <div class="pulse-ring"></div>
+        <div class="loading-icon">📈</div>
+      </div>
+      <h3 id="loading-title">Gathering Stock Intelligence...</h3>
+      <p id="loading-subtitle">Fetching latest market prices, financial metrics, and generating clear AI insights.</p>
       <div class="loading-progress-bar">
         <div class="loading-progress-fill" id="progress-fill"></div>
       </div>
     </div>
 
-    <!-- Error Banner -->
+    <!-- Error State Banner -->
     <div id="error-state" class="panel error-panel hidden">
       <div class="error-icon">⚠️</div>
       <div class="error-content">
-        <h3 id="error-title">Oops! Something went wrong</h3>
-        <p id="error-message">We couldn't load data for that stock. Please check the spelling or enter your API keys.</p>
+        <h3 id="error-title">Oops! Stock Not Found</h3>
+        <p id="error-message">We couldn't load data for that stock ticker. Please check the spelling or view our pre-loaded demo report.</p>
         <div class="error-actions">
           <button id="error-retry-btn" class="btn btn-secondary">Try Again</button>
           <button id="error-demo-btn" class="btn btn-primary">View Demo Report Instead</button>
@@ -118,13 +152,13 @@
       </div>
     </div>
 
-    <!-- Stock Analysis Results Panel -->
+    <!-- Stock Analysis Results Section -->
     <section id="results-panel" class="results-panel hidden">
       
-      <!-- Top Overview Bar -->
+      <!-- Top Overview Header Card -->
       <div class="panel stock-header-card">
         <div class="stock-title-row">
-          <div>
+          <div class="stock-identity">
             <div class="stock-badge-row">
               <span id="res-ticker" class="stock-ticker-tag">AAPL</span>
               <span id="res-exchange" class="stock-meta-tag">NASDAQ</span>
@@ -134,8 +168,8 @@
           </div>
           
           <div class="stock-price-block">
-            <div class="price-value" id="res-price">$185.20</div>
-            <div class="price-change-pill positive" id="res-change">+1.85 (1.01%)</div>
+            <div class="price-value" id="res-price">$189.84</div>
+            <div class="price-change-pill positive" id="res-change">+2.45 (+1.31%)</div>
           </div>
         </div>
 
@@ -144,37 +178,58 @@
           <div class="metric-card">
             <div class="metric-label">
               Day's Range 
-              <span class="info-tooltip" title="Lowest and highest price traded today">ℹ️</span>
+              <button type="button" class="info-help-btn" data-tooltip="Lowest and highest price traded today in the market.">ℹ️</button>
             </div>
-            <div class="metric-value" id="res-day-range">$183.10 - $186.40</div>
+            <div class="metric-value" id="res-day-range">$187.20 - $190.50</div>
           </div>
 
           <div class="metric-card">
             <div class="metric-label">
               52-Week Range 
-              <span class="info-tooltip" title="Lowest and highest price over the past year">ℹ️</span>
+              <button type="button" class="info-help-btn" data-tooltip="The lowest and highest price over the past full year. Shows where current price sits in annual history.">ℹ️</button>
             </div>
             <div class="metric-value" id="res-year-range">$164.08 - $199.62</div>
             <div class="range-bar-wrapper">
-              <div class="range-bar-fill" id="res-year-range-fill" style="width: 60%;"></div>
+              <div class="range-bar-fill" id="res-year-range-fill" style="width: 73%;"></div>
             </div>
           </div>
 
           <div class="metric-card">
             <div class="metric-label">
               Company Size (Market Cap) 
-              <span class="info-tooltip" title="Total market value of all company shares">ℹ️</span>
+              <button type="button" class="info-help-btn" data-tooltip="Total dollar value of all company shares combined. Think of it as the total price tag to buy 100% of the company.">ℹ️</button>
             </div>
-            <div class="metric-value" id="res-market-cap">$2.85 Trillion</div>
+            <div class="metric-value" id="res-market-cap">$2.92 Trillion</div>
           </div>
 
           <div class="metric-card">
             <div class="metric-label">
               Valuation (P/E Ratio)
-              <span class="info-tooltip" title="Price to Earnings ratio. Higher means investors expect faster growth.">ℹ️</span>
+              <button type="button" class="info-help-btn" data-tooltip="Price-to-Earnings ratio. Shows how much investors pay per $1 of profit. Lower = cheaper valuation; Higher = investors expect rapid future growth.">ℹ️</button>
             </div>
-            <div class="metric-value" id="res-pe-ratio">28.5 (Moderate)</div>
+            <div class="metric-value" id="res-pe-ratio">29.8 (Premium)</div>
           </div>
+        </div>
+      </div>
+
+      <!-- Mom's 30-Second Key Takeaways Highlight Box -->
+      <div class="panel mom-summary-card">
+        <div class="mom-card-header">
+          <div class="mom-avatar">👵🏼</div>
+          <div>
+            <h3>The 30-Second Summary for Mom</h3>
+            <p class="panel-desc">Quick, plain-spoken verdict before you dive into details</p>
+          </div>
+        </div>
+
+        <div id="res-mom-verdict-box" class="mom-verdict-box">
+          <div class="verdict-pill-row">
+            <span id="res-verdict-badge" class="verdict-pill positive">🟢 Strong Quality Cornerstone</span>
+            <span id="res-risk-badge" class="verdict-pill neutral">🛡️ Moderate Risk</span>
+          </div>
+          <p id="res-mom-summary-text" class="mom-summary-text">
+            Apple makes products millions of people use every day. They earn steady cash from iPhones and recurring subscriptions like iCloud, making this a reliable long-term business with low-to-moderate risk.
+          </p>
         </div>
       </div>
 
@@ -182,10 +237,12 @@
       <div class="panel chart-card">
         <div class="chart-header">
           <div>
-            <h3>30-Day Price Trend</h3>
-            <p class="panel-desc">Recent price movement and daily closing performance</p>
+            <h3>Price Trend & Performance</h3>
+            <p class="panel-desc">Recent price movement and daily closing trend</p>
           </div>
-          <div class="chart-tag" id="chart-period-tag">Daily Close Prices</div>
+          <div class="chart-controls">
+            <span class="chart-tag" id="chart-period-tag">Daily Closing Prices</span>
+          </div>
         </div>
         <div class="chart-container">
           <canvas id="stockChart"></canvas>
@@ -199,13 +256,16 @@
             <span class="ai-sparkle">✨</span>
             <div>
               <h3>AI Research Report</h3>
-              <p class="panel-desc">Summarized analysis generated specifically for non-expert investors</p>
+              <p class="panel-desc">In-depth summary translated into plain language</p>
             </div>
           </div>
           
           <div class="report-header-actions">
-            <button id="tts-btn" class="btn btn-sm btn-secondary" title="Listen to AI report read aloud">
-              🔊 <span id="tts-text">Listen</span>
+            <button id="tts-btn" class="btn btn-sm btn-action-listen" title="Listen to AI report read aloud clearly">
+              🔊 <span id="tts-text">Listen to Report</span>
+            </button>
+            <button id="compare-btn" class="btn btn-sm btn-secondary" title="Compare this stock side-by-side with Coca-Cola or Apple">
+              ⚖️ Compare Stock
             </button>
             <button id="copy-report-btn" class="btn btn-sm btn-secondary" title="Copy report text to clipboard">
               📋 Copy
@@ -217,11 +277,11 @@
         </div>
 
         <!-- Rating Banner -->
-        <div id="res-rating-banner" class="rating-banner rating-neutral">
+        <div id="res-rating-banner" class="rating-banner rating-positive">
           <div class="rating-icon" id="res-rating-icon">🎯</div>
           <div>
-            <div class="rating-label">Overall Investor Sentiment</div>
-            <div class="rating-title" id="res-rating-title">Moderate Growth Opportunity with Quality Fundamentals</div>
+            <div class="rating-label">Investor Sentiment Summary</div>
+            <div class="rating-title" id="res-rating-title">Strong Core Portfolio Stock with Unmatched Brand Loyalty</div>
           </div>
         </div>
 
@@ -252,10 +312,11 @@
           </div>
         </div>
 
-        <!-- Full Analysis Details -->
+        <!-- Full Analysis Accordion -->
         <div class="full-analysis-section">
           <button id="toggle-full-report-btn" class="btn-toggle-report">
-            📖 View Full Analysis & Detailed Breakdown <span id="toggle-icon">▼</span>
+            <span>📖 View Full Detailed Analysis & Financial Breakdown</span> 
+            <span id="toggle-icon">▼</span>
           </button>
           
           <div id="full-report-content" class="full-report-content hidden markdown-body">
@@ -265,6 +326,70 @@
       </div>
     </section>
   </main>
+
+  <!-- Beginner Glossary Modal -->
+  <div id="glossary-modal" class="modal-overlay hidden">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3>📖 Financial Words Made Super Simple</h3>
+        <button id="close-glossary-btn" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-intro">
+          Here is a quick cheat-sheet for financial terms. Bookmark this anytime you are researching stocks!
+        </p>
+
+        <div class="glossary-grid">
+          <div class="glossary-item">
+            <div class="glossary-term">🏷️ Stock Ticker</div>
+            <div class="glossary-def">A short 1-to-4 letter abbreviation used by stock exchanges. E.g., AAPL for Apple, KO for Coca-Cola, MSFT for Microsoft.</div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">🏬 Market Cap (Company Size)</div>
+            <div class="glossary-def">Short for Market Capitalization. Total market price tag of all shares. A $2 Trillion company is massive and usually very established.</div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">💵 Dividend</div>
+            <div class="glossary-def">Cash paid directly to shareholders out of company profits, usually every 3 months. Like getting cash back for owning part of the business!</div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">📊 P/E Ratio (Price to Earnings)</div>
+            <div class="glossary-def">How many dollars you pay for $1 of company annual profit. Lower P/E means bargain price; higher P/E means investors expect fast growth.</div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">🎢 Volatility</div>
+            <div class="glossary-def">How wildly stock prices bounce up and down day to day. High volatility = bigger price swings; Low volatility = calm and stable.</div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">🛡️ Defensive Stock</div>
+            <div class="glossary-def">A business that stays stable even during recessions because people always buy their products (e.g. food, electricity, healthcare).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Modal -->
+  <div id="compare-modal" class="modal-overlay hidden">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3>⚖️ Stock Side-by-Side Comparison</h3>
+        <button id="close-compare-btn" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-intro">Compare your selected stock with safe household benchmark stocks to evaluate suitability.</p>
+        
+        <div id="compare-cards-wrapper" class="compare-grid">
+          <!-- Dynamic compare content injected via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Key Settings Modal -->
   <div id="settings-modal" class="modal-overlay hidden">
@@ -276,13 +401,13 @@
 
       <div class="modal-body">
         <p class="modal-intro">
-          This app uses free data services to look up stock prices and generate research reports. Your keys are <strong>saved locally on your browser</strong> and never sent to any external server other than the official providers.
+          This app uses free data services to fetch live prices and generate reports. Your keys are <strong>saved locally in your browser</strong> and never sent to external servers.
         </p>
 
         <form id="keys-form">
           <div class="form-group">
             <label for="modal-twelvedata-key">
-              Twelve Data API Key <span class="label-badge">For stock prices & charts</span>
+              Twelve Data API Key <span class="label-badge">Stock prices & charts</span>
             </label>
             <input 
               id="modal-twelvedata-key" 
@@ -291,14 +416,14 @@
               placeholder="Paste Twelve Data key..." 
             />
             <p class="field-hint">
-              Free plan gives 800 requests/day. Get a free key at 
+              Free plan gives 800 requests/day. Get a key at 
               <a href="https://twelvedata.com/pricing" target="_blank" rel="noopener">twelvedata.com</a>.
             </p>
           </div>
 
           <div class="form-group">
             <label for="modal-openrouter-key">
-              OpenRouter API Key <span class="label-badge">For AI analysis</span>
+              OpenRouter API Key <span class="label-badge">AI report synthesis</span>
             </label>
             <input 
               id="modal-openrouter-key" 
@@ -325,10 +450,17 @@
     </div>
   </div>
 
+  <!-- Simple Tooltip Popover -->
+  <div id="global-tooltip-popover" class="tooltip-popover hidden">
+    <span id="tooltip-text">Tooltip content</span>
+  </div>
+
   <!-- Footer -->
   <footer class="app-footer">
-    <p>Smart Stock Assistant • Designed for simple, clear, non-technical financial research.</p>
-    <p class="disclaimer">Disclaimer: This tool provides general educational information and AI summaries. It is not financial advice.</p>
+    <div class="footer-container">
+      <p class="footer-brand">Smart Stock Assistant • Simple, friendly stock intelligence for everyone.</p>
+      <p class="disclaimer">Disclaimer: This application provides general educational research and AI summaries. It does not constitute financial advice.</p>
+    </div>
   </footer>
 
   <script type="module" src="./main.js"></script>
