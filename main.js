@@ -584,17 +584,27 @@ const DOM = {
   profileActiveBanner: document.getElementById('profile-active-banner'),
   profileBannerText: document.getElementById('profile-banner-text'),
 
-  // Profi Technical Indicators DOM elements
+  // Finance Bro Technical Indicators DOM elements
   profiIndicatorsPanel: document.getElementById('profi-indicators-panel'),
   profiSmaToggleBtn: document.getElementById('profi-sma-toggle'),
   toggleProfiModeBtn: document.getElementById('toggle-profi-mode-btn'),
   profiModeIcon: document.getElementById('profi-mode-icon'),
   profiModeText: document.getElementById('profi-mode-text'),
   profiMetricsGrid: document.getElementById('profi-metrics-grid'),
+  resFbThesisText: document.getElementById('res-fb-thesis-text'),
   resRsiValue: document.getElementById('res-rsi-value'),
   resRsiIndicator: document.getElementById('res-rsi-indicator'),
   resRsiStatus: document.getElementById('res-rsi-status'),
   resRsiDesc: document.getElementById('res-rsi-desc'),
+  resTargetValue: document.getElementById('res-target-value'),
+  resTargetPill: document.getElementById('res-target-pill'),
+  resTargetDesc: document.getElementById('res-target-desc'),
+  resPeValue: document.getElementById('res-pe-value'),
+  resPePill: document.getElementById('res-pe-pill'),
+  resPeDesc: document.getElementById('res-pe-desc'),
+  resShortValue: document.getElementById('res-short-value'),
+  resShortPill: document.getElementById('res-short-pill'),
+  resShortDesc: document.getElementById('res-short-desc'),
   resSma50Value: document.getElementById('res-sma50-value'),
   resSma50Pill: document.getElementById('res-sma50-pill'),
   resSma50Desc: document.getElementById('res-sma50-desc'),
@@ -607,9 +617,9 @@ const DOM = {
   resMacdValue: document.getElementById('res-macd-value'),
   resMacdPill: document.getElementById('res-macd-pill'),
   resMacdDesc: document.getElementById('res-macd-desc'),
-  resDivValue: document.getElementById('res-div-value'),
-  resDivPill: document.getElementById('res-div-pill'),
-  resDivDesc: document.getElementById('res-div-desc'),
+  resInstValue: document.getElementById('res-inst-value'),
+  resInstPill: document.getElementById('res-inst-pill'),
+  resInstDesc: document.getElementById('res-inst-desc'),
   
   resRatingBanner: document.getElementById('res-rating-banner'),
   resRatingIcon: document.getElementById('res-rating-icon'),
@@ -669,16 +679,16 @@ function setupEventListeners() {
     });
   });
 
-  // Profi SMA Overlay toggle button on Chart
+  // Finance Bro SMA Overlay toggle button on Chart
   if (DOM.profiSmaToggleBtn) {
     DOM.profiSmaToggleBtn.addEventListener('click', () => {
       STATE.showProfiSMAOverlay = !STATE.showProfiSMAOverlay;
       if (STATE.showProfiSMAOverlay) {
         DOM.profiSmaToggleBtn.classList.add('active');
-        DOM.profiSmaToggleBtn.innerHTML = '⚡ SMA 50 Overlay: ON';
+        DOM.profiSmaToggleBtn.innerHTML = '🕶️ SMA 50 Overlay: ON';
       } else {
         DOM.profiSmaToggleBtn.classList.remove('active');
-        DOM.profiSmaToggleBtn.innerHTML = '⚡ SMA 50 Overlay';
+        DOM.profiSmaToggleBtn.innerHTML = '🕶️ SMA 50 Overlay';
       }
       if (STATE.currentStockData) {
         renderChart(STATE.currentStockData.chartLabels, STATE.currentStockData.chartData, STATE.currentStockData.isPositive);
@@ -686,15 +696,18 @@ function setupEventListeners() {
     });
   }
 
-  // Toggle Profi Technical Mode
+  // Toggle Finance Bro Mode
   if (DOM.toggleProfiModeBtn) {
     DOM.toggleProfiModeBtn.addEventListener('click', () => {
       STATE.profiModeEnabled = !STATE.profiModeEnabled;
       if (DOM.profiMetricsGrid) {
         DOM.profiMetricsGrid.style.display = STATE.profiModeEnabled ? 'grid' : 'none';
       }
+      if (DOM.profiModeIcon) {
+        DOM.profiModeIcon.textContent = STATE.profiModeEnabled ? '🕶️' : '🙈';
+      }
       if (DOM.profiModeText) {
-        DOM.profiModeText.textContent = STATE.profiModeEnabled ? 'Profi Mode: ON' : 'Profi Mode: Hidden';
+        DOM.profiModeText.textContent = STATE.profiModeEnabled ? 'Finance Bro Mode: ON' : 'Finance Bro Mode: Hidden';
       }
     });
   }
@@ -1117,9 +1130,11 @@ function renderStockResults(data) {
   renderChart(data.chartLabels, data.chartData, data.isPositive);
 }
 
-// --- Profi Technical Indicators Rendering ---
+// --- Finance Bro Technical Indicators & Alpha Desk Rendering ---
 function renderProfiIndicatorsCard(data) {
   const profi = getProfiMetrics(data);
+
+  if (DOM.resFbThesisText) DOM.resFbThesisText.textContent = profi.thesisText || `Wall Street consensus price target sits at ${profi.targetValue} (${profi.targetPill}). RSI is ${profi.rsi}, showing balanced momentum with ${profi.shortPill}.`;
 
   if (DOM.resRsiValue) DOM.resRsiValue.textContent = profi.rsi;
   if (DOM.resRsiIndicator) {
@@ -1130,6 +1145,27 @@ function renderProfiIndicatorsCard(data) {
     DOM.resRsiStatus.className = `rsi-status-tag ${profi.rsiCategory || 'neutral'}`;
   }
   if (DOM.resRsiDesc) DOM.resRsiDesc.textContent = profi.rsiDesc;
+
+  if (DOM.resTargetValue) DOM.resTargetValue.textContent = profi.targetValue;
+  if (DOM.resTargetPill) {
+    DOM.resTargetPill.textContent = profi.targetPill;
+    DOM.resTargetPill.className = `profi-status-pill ${profi.targetClass || 'positive'}`;
+  }
+  if (DOM.resTargetDesc) DOM.resTargetDesc.textContent = profi.targetDesc;
+
+  if (DOM.resPeValue) DOM.resPeValue.textContent = profi.peValue;
+  if (DOM.resPePill) {
+    DOM.resPePill.textContent = profi.pePill;
+    DOM.resPePill.className = `profi-status-pill ${profi.peClass || 'neutral'}`;
+  }
+  if (DOM.resPeDesc) DOM.resPeDesc.textContent = profi.peDesc;
+
+  if (DOM.resShortValue) DOM.resShortValue.textContent = profi.shortValue;
+  if (DOM.resShortPill) {
+    DOM.resShortPill.textContent = profi.shortPill;
+    DOM.resShortPill.className = `profi-status-pill ${profi.shortClass || 'positive'}`;
+  }
+  if (DOM.resShortDesc) DOM.resShortDesc.textContent = profi.shortDesc;
 
   if (DOM.resSma50Value) DOM.resSma50Value.textContent = profi.sma50;
   if (DOM.resSma50Pill) {
@@ -1159,12 +1195,12 @@ function renderProfiIndicatorsCard(data) {
   }
   if (DOM.resMacdDesc) DOM.resMacdDesc.textContent = profi.macdDesc;
 
-  if (DOM.resDivValue) DOM.resDivValue.textContent = profi.divYield;
-  if (DOM.resDivPill) {
-    DOM.resDivPill.textContent = profi.divPill;
-    DOM.resDivPill.className = `profi-status-pill ${profi.divClass || 'positive'}`;
+  if (DOM.resInstValue) DOM.resInstValue.textContent = profi.instValue;
+  if (DOM.resInstPill) {
+    DOM.resInstPill.textContent = profi.instPill;
+    DOM.resInstPill.className = `profi-status-pill ${profi.instClass || 'positive'}`;
   }
-  if (DOM.resDivDesc) DOM.resDivDesc.textContent = profi.divDesc;
+  if (DOM.resInstDesc) DOM.resInstDesc.textContent = profi.instDesc;
 }
 
 function getProfiMetrics(stock) {
@@ -1194,26 +1230,40 @@ function getProfiMetrics(stock) {
   if (rsiVal >= 70) {
     rsiCategory = 'overbought';
     rsiStatus = `Overbought (>70: ${rsiVal})`;
-    rsiDesc = 'RSI indicates strong recent buying surge. Watch for potential temporary pullbacks.';
+    rsiDesc = 'RSI indicates strong recent buying surge. Watch for potential profit-taking pullbacks.';
   } else if (rsiVal <= 30) {
     rsiCategory = 'oversold';
     rsiStatus = `Oversold (<30: ${rsiVal})`;
-    rsiDesc = 'RSI indicates heavy recent selling pressure. Stock may be nearing bargain levels.';
+    rsiDesc = 'RSI indicates heavy selling pressure. Stock may be entering dip-buy bargain territory.';
   }
 
   const currentPrice = parseFloat(stock.price) || (prices[prices.length - 1] || 100);
+  const targetPriceVal = (currentPrice * 1.14).toFixed(2);
   const estSma50 = (currentPrice * 0.97).toFixed(2);
   const estSma200 = (currentPrice * 0.92).toFixed(2);
 
   return {
+    thesisText: `Institutional consensus targets $${targetPriceVal} (+14.0% upside). RSI momentum stands at ${rsiVal}, and strong institutional backing (84%) supports long-term structural momentum.`,
     rsi: rsiVal,
     rsiCategory,
     rsiStatus,
     rsiDesc,
+    targetValue: `$${targetPriceVal}`,
+    targetPill: '🚀 +14.0% Analyst Target Upside',
+    targetClass: 'positive',
+    targetDesc: '86% of Wall Street research desks rate as Strong Buy / Outperform.',
+    peValue: '28.4x',
+    pePill: '📊 PEG Ratio: 1.15x (Fair)',
+    peClass: 'neutral',
+    peDesc: 'Valuation is well-supported by 24% projected annual EPS growth.',
+    shortValue: '1.8%',
+    shortPill: '🛡️ Low Squeeze Risk',
+    shortClass: 'positive',
+    shortDesc: 'Minimal short interest from hedge funds (0.8 days to cover).',
     sma50: `$${estSma50}`,
     sma50Pill: '🟢 Price +3.1% Above SMA 50',
     sma50Class: 'positive',
-    sma50Desc: 'Trading above the 50-day average supports short-term momentum.',
+    sma50Desc: 'Trading above the 50-day moving average confirms short-term trend.',
     sma200: `$${estSma200}`,
     sma200Pill: '🟢 Price +8.7% Above SMA 200',
     sma200Class: 'positive',
@@ -1221,15 +1271,15 @@ function getProfiMetrics(stock) {
     beta: '1.05',
     betaPill: '⚡ Market-Like Volatility',
     betaClass: 'neutral',
-    betaDesc: 'Price fluctuates in close sync with the broader market index.',
+    betaDesc: 'Price fluctuates in close sync with the broader S&P 500 index.',
     macd: '+1.82',
-    macdPill: '📈 Bullish Momentum Crossover',
+    macdPill: '📈 Bullish Crossover Signal',
     macdClass: 'positive',
     macdDesc: 'MACD line sits above signal line, confirming active buyer interest.',
-    divYield: '1.20% Yield',
-    divPill: '🛡️ Low Payout Ratio (22%)',
-    divClass: 'positive',
-    divDesc: 'Dividend is safe and backed by organic operating cash flow.'
+    instValue: '84.2%',
+    instPill: '🏛️ High Smart Money Backing',
+    instClass: 'positive',
+    instDesc: 'Solid backing from institutional funds, 13F filings, and pension desks.'
   };
 }
 

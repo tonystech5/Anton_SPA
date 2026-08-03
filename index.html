@@ -297,18 +297,27 @@
         </div>
       </div>
 
-      <!-- Technical Indicators & Profi View Panel -->
-      <div class="panel profi-indicators-card" id="profi-indicators-panel">
+      <!-- Technical Indicators & Finance Bro Mode Panel -->
+      <div class="panel profi-indicators-card finance-bro-card" id="profi-indicators-panel">
         <div class="profi-card-header">
           <div class="profi-title-group">
-            <div class="profi-badge">⚡ PROFI TECHNICAL VIEW</div>
-            <h3>📈 Advanced Momentum & Technical Indicators</h3>
-            <p class="panel-desc">Quantitative trading signals: Relative Strength Index (RSI), Moving Averages, Beta, and MACD</p>
+            <div class="profi-badge finance-bro-badge">🕶️ FINANCE BRO DESK</div>
+            <h3>📈 Finance Bro Mode: Trading Desk & Alpha Analytics</h3>
+            <p class="panel-desc">Quantitative Wall Street signals: RSI momentum, Moving Averages, Short Squeeze metric, Wall Street Analyst Targets, Forward P/E, and Options IV.</p>
           </div>
           <div class="profi-view-toggle-group">
-            <button type="button" id="toggle-profi-mode-btn" class="btn btn-sm btn-outline-purple" title="Toggle detailed technical metrics">
-              <span id="profi-mode-icon">📊</span> <span id="profi-mode-text">Profi Mode: ON</span>
+            <button type="button" id="toggle-profi-mode-btn" class="btn btn-sm btn-outline-purple" title="Toggle Finance Bro Mode display">
+              <span id="profi-mode-icon">🕶️</span> <span id="profi-mode-text">Finance Bro Mode: ON</span>
             </button>
+          </div>
+        </div>
+
+        <!-- Finance Bro Alpha Quick Summary Banner -->
+        <div class="finance-bro-thesis-banner" id="res-fb-thesis-banner">
+          <span class="thesis-icon">🚀</span>
+          <div class="thesis-content">
+            <div class="thesis-title">Finance Bro Desk Alpha Thesis</div>
+            <div class="thesis-text" id="res-fb-thesis-text">Wall Street consensus has an average price target of $215 (+14.2% upside). RSI momentum is balanced at 58.4, and low short float indicates low squeeze risk.</div>
           </div>
         </div>
 
@@ -318,7 +327,7 @@
             <div class="profi-metric-top">
               <span class="profi-metric-name">
                 RSI (14-Day Momentum)
-                <button type="button" class="info-help-btn" data-tooltip="Relative Strength Index (0–100). Below 30 = Oversold (potential buying bargain), Above 70 = Overbought (potential pullback), 30–70 = Healthy neutral momentum.">ℹ️</button>
+                <button type="button" class="info-help-btn" data-tooltip="Relative Strength Index (0–100). Below 30 = Oversold (potential dip buy opportunity), Above 70 = Overbought (potential profit-taking zone), 30–70 = Healthy momentum.">ℹ️</button>
               </span>
               <span id="res-rsi-value" class="profi-metric-value">58.4</span>
             </div>
@@ -337,6 +346,45 @@
               </div>
             </div>
             <p id="res-rsi-desc" class="profi-metric-desc">Buying momentum is healthy and steady. Not overextended.</p>
+          </div>
+
+          <!-- Wall Street Consensus & Price Target -->
+          <div class="profi-metric-item">
+            <div class="profi-metric-top">
+              <span class="profi-metric-name">
+                Wall St. Price Target
+                <button type="button" class="info-help-btn" data-tooltip="Consensus price target from major institutional research analysts (Goldman, Morgan Stanley, JPM).">ℹ️</button>
+              </span>
+              <span id="res-target-value" class="profi-metric-value">$215.00</span>
+            </div>
+            <div class="profi-status-pill positive" id="res-target-pill">🚀 +14.2% Target Upside</div>
+            <p id="res-target-desc" class="profi-metric-desc">86% of Wall Street analysts rate as Strong Buy / Outperform.</p>
+          </div>
+
+          <!-- Valuation Multiples (P/E & PEG) -->
+          <div class="profi-metric-item">
+            <div class="profi-metric-top">
+              <span class="profi-metric-name">
+                Forward P/E & PEG
+                <button type="button" class="info-help-btn" data-tooltip="Price-to-Earnings based on next 12M estimated profits. PEG ratio < 1.5x suggests growth at reasonable valuation.">ℹ️</button>
+              </span>
+              <span id="res-pe-value" class="profi-metric-value">28.4x</span>
+            </div>
+            <div class="profi-status-pill neutral" id="res-pe-pill">📊 PEG Ratio: 1.15x (Fair)</div>
+            <p id="res-pe-desc" class="profi-metric-desc">Valuation is well-supported by 24% projected annual EPS growth.</p>
+          </div>
+
+          <!-- Short Float & Squeeze Risk -->
+          <div class="profi-metric-item">
+            <div class="profi-metric-top">
+              <span class="profi-metric-name">
+                Short Float %
+                <button type="button" class="info-help-btn" data-tooltip="Percentage of shares shorted by hedge funds. Above 15% indicates short squeeze potential.">ℹ️</button>
+              </span>
+              <span id="res-short-value" class="profi-metric-value">1.8%</span>
+            </div>
+            <div class="profi-status-pill positive" id="res-short-pill">🛡️ Low Squeeze Risk</div>
+            <p id="res-short-desc" class="profi-metric-desc">Minimal short interest from institutional bears (0.8 days to cover).</p>
           </div>
 
           <!-- 50-Day Moving Average -->
@@ -365,12 +413,12 @@
             <p id="res-sma200-desc" class="profi-metric-desc">Major long-term structural bull trend intact.</p>
           </div>
 
-          <!-- Market Beta (Volatility) -->
+          <!-- Market Beta & Volatility -->
           <div class="profi-metric-item">
             <div class="profi-metric-top">
               <span class="profi-metric-name">
                 Market Beta (Volatility)
-                <button type="button" class="info-help-btn" data-tooltip="Measures volatility vs S&P 500 index. Beta 1.0 = moves with market; >1.0 = higher price swings; <1.0 = lower volatility/defensive safety.">ℹ️</button>
+                <button type="button" class="info-help-btn" data-tooltip="Measures volatility vs S&P 500 index. Beta 1.0 = moves with market; &gt;1.0 = higher price swings; &lt;1.0 = lower volatility/defensive safety.">ℹ️</button>
               </span>
               <span id="res-beta-value" class="profi-metric-value">1.05</span>
             </div>
@@ -391,17 +439,17 @@
             <p id="res-macd-desc" class="profi-metric-desc">MACD line sits above signal line, confirming active buyer support.</p>
           </div>
 
-          <!-- Dividend Yield & Safety -->
+          <!-- Institutional Ownership & FCF -->
           <div class="profi-metric-item">
             <div class="profi-metric-top">
               <span class="profi-metric-name">
-                Dividend Yield & Safety
-                <button type="button" class="info-help-btn" data-tooltip="Annual dividend cash payout as % of stock price, and Payout Ratio (% of earnings spent on dividend).">ℹ️</button>
+                Institutional Ownership
+                <button type="button" class="info-help-btn" data-tooltip="Percentage of outstanding shares held by institutional funds, pension funds, and 13F filings.">ℹ️</button>
               </span>
-              <span id="res-div-value" class="profi-metric-value">0.52% Yield</span>
+              <span id="res-inst-value" class="profi-metric-value">84.2%</span>
             </div>
-            <div class="profi-status-pill positive" id="res-div-pill">🛡️ Low Payout Ratio (15.2%)</div>
-            <p id="res-div-desc" class="profi-metric-desc">Dividend is exceptionally safe and backed by strong cash flow.</p>
+            <div class="profi-status-pill positive" id="res-inst-pill">🏛️ High Smart Money Backing</div>
+            <p id="res-inst-desc" class="profi-metric-desc">Strong backing from Vanguard, BlackRock, and institutional desks.</p>
           </div>
         </div>
       </div>
@@ -560,6 +608,21 @@
           <div class="glossary-item">
             <div class="glossary-term">📊 MACD (Moving Average Convergence Divergence)</div>
             <div class="glossary-def">A trend-following momentum indicator showing the relationship between two moving averages of a stock's price, signaling buyer or seller momentum.</div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">🎯 Wall St. Target & Analyst Upside</div>
+            <div class="glossary-def">The 12-month average price target set by institutional equity research analysts (Goldman Sachs, Morgan Stanley, J.P. Morgan).</div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">📈 Short Float & Squeeze Risk</div>
+            <div class="glossary-def">The percentage of total shares shorted by hedge funds. Short float above 15% indicates potential for a rapid short squeeze rally.</div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">🏛️ Institutional Ownership</div>
+            <div class="glossary-def">The percentage of stock owned by smart-money institutions, hedge funds, mutual funds, and 13F filings.</div>
           </div>
         </div>
       </div>
