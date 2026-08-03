@@ -632,14 +632,7 @@ function init() {
 
 // --- Setup Event Listeners ---
 function setupEventListeners() {
-  // Investor profile selection buttons (Hero & Results panel)
-  document.querySelectorAll('#main-profile-selector .profile-option-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const profileKey = btn.getAttribute('data-profile');
-      setInvestorProfile(profileKey);
-    });
-  });
-
+  // Investor profile selection buttons (in Tailored Perspective card)
   document.querySelectorAll('.profile-switch-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const profileKey = btn.getAttribute('data-profile');
@@ -1068,16 +1061,7 @@ function setInvestorProfile(profileKey) {
   STATE.userProfile = profileKey;
   localStorage.setItem('user_investor_profile', profileKey);
 
-  // Update active class on main profile selector buttons
-  document.querySelectorAll('#main-profile-selector .profile-option-btn').forEach(btn => {
-    if (btn.getAttribute('data-profile') === profileKey) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-  });
-
-  // Update active class on result switch buttons
+  // Update active class on profile selector buttons in Tailored Perspective card
   document.querySelectorAll('.profile-switch-btn').forEach(btn => {
     if (btn.getAttribute('data-profile') === profileKey) {
       btn.classList.add('active');
@@ -1085,12 +1069,6 @@ function setInvestorProfile(profileKey) {
       btn.classList.remove('active');
     }
   });
-
-  // Update banner text
-  const cfg = PROFILE_CONFIGS[profileKey];
-  if (DOM.profileBannerText && cfg) {
-    DOM.profileBannerText.innerHTML = cfg.bannerText;
-  }
 
   // Update report card if stock is currently rendered
   if (STATE.currentStockData) {
