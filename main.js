@@ -187,6 +187,191 @@ Coca-Cola distributes a reliable quarterly cash dividend payout, making it a fav
 
 #### Investment Verdict
 An exceptional defensive anchor stock for steady dividend income and capital preservation.`
+  },
+
+  JNJ: {
+    ticker: 'JNJ',
+    companyName: 'Johnson & Johnson',
+    exchange: 'NYSE',
+    sector: 'Healthcare & Pharmaceuticals',
+    price: '162.40',
+    change: '+0.80',
+    changePercent: '+0.50%',
+    isPositive: true,
+    dayRange: '$161.20 - $163.10',
+    yearRange: '$143.10 - $175.90',
+    yearRangePct: 78,
+    marketCap: '$390 Billion',
+    peRatio: '15.8 (Defensive Value)',
+    chartData: [156, 157, 158, 157.5, 159, 160, 161, 162, 162.40],
+    chartLabels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Today'],
+    verdictBadge: '🛡️ Ultimate Safe Haven',
+    riskBadge: '🧘 Very Low Volatility',
+    momSummary: 'Johnson & Johnson manufactures essential prescription medicines and medical devices used worldwide. Because health needs never stop, J&J stock price moves very smoothly and pays a generous, growing cash dividend to investors year after year.',
+    ratingTitle: 'Rock-Solid Healthcare Giant for Peace of Mind & Dividend Income',
+    ratingType: 'positive',
+    overview: 'Johnson & Johnson is one of the largest healthcare companies globally, focusing on innovative pharmaceutical treatments and advanced surgical medical devices.',
+    strengths: [
+      'Triple-A credit rating: Financial strength rivaling major sovereign governments.',
+      'Over 60 years of uninterrupted annual dividend payout increases (Dividend King).',
+      'Extremely low price volatility: Ideal for conservative investors seeking capital stability.'
+    ],
+    risks: [
+      'Legal liabilities and talc powder litigation settlement costs.',
+      'Patent expirations on older blockbuster medicines requiring new drug innovation.',
+      'Slower capital growth compared to high-flying artificial intelligence stocks.'
+    ],
+    fullReport: `### Research Summary for Johnson & Johnson (JNJ)
+
+Johnson & Johnson serves as a quintessential defensive anchor stock in conservative portfolios. Its healthcare operations generate durable cash flows during all economic conditions.`
+  },
+
+  PG: {
+    ticker: 'PG',
+    companyName: 'Procter & Gamble Co.',
+    exchange: 'NYSE',
+    sector: 'Consumer Household Products',
+    price: '168.90',
+    change: '+1.15',
+    changePercent: '+0.69%',
+    isPositive: true,
+    dayRange: '$167.50 - $169.40',
+    yearRange: '$141.20 - $172.50',
+    yearRangePct: 88,
+    marketCap: '$398 Billion',
+    peRatio: '25.1 (High Quality Consumer Leader)',
+    chartData: [162, 163, 164, 165, 164.5, 166, 167, 168, 168.90],
+    chartLabels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Today'],
+    verdictBadge: '💵 Dividend King (67 Years)',
+    riskBadge: '🛡️ Low Price Volatility',
+    momSummary: 'Procter & Gamble produces essential household items everyone buys weekly, like Tide detergent, Bounty paper towels, Pampers, and Crest toothpaste. This everyday demand guarantees steady profits and quarterly dividend checks.',
+    ratingTitle: 'Premier Consumer Staple for Inflation Protection and Income',
+    ratingType: 'positive',
+    overview: 'Procter & Gamble sells iconic personal care and home cleaning products in over 180 countries, holding dominant market share positions across major product categories.',
+    strengths: [
+      'Incredible pricing power: Consumers continue buying Tide and Crest even when inflation raises prices.',
+      'Unmatched 67-year dividend growth streak, making it one of the safest income stocks in history.',
+      'Resilient sales performance during economic recessions and market downturns.'
+    ],
+    risks: [
+      'Higher raw material costs (pulp, plastic packaging) can temporarily squeeze profit margins.',
+      'Competition from lower-cost store brand alternatives during tight family budgets.',
+      'Modest single-digit annual growth rates.'
+    ],
+    fullReport: `### Research Summary for Procter & Gamble (PG)
+
+Procter & Gamble is a classic defensive powerhouse. Its portfolio of indispensable household products translates into highly predictable, recession-resistant cash flows.`
+  },
+
+  MSFT: {
+    ticker: 'MSFT',
+    companyName: 'Microsoft Corporation',
+    exchange: 'NASDAQ',
+    sector: 'Enterprise Software & Cloud AI',
+    price: '425.20',
+    change: '+3.80',
+    changePercent: '+0.90%',
+    isPositive: true,
+    dayRange: '$421.00 - $427.50',
+    yearRange: '$326.90 - $468.35',
+    yearRangePct: 70,
+    marketCap: '$3.16 Trillion',
+    peRatio: '34.2 (High-Margin Enterprise Leader)',
+    chartData: [410, 412, 415, 418, 416, 420, 422, 423, 425.20],
+    chartLabels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Today'],
+    verdictBadge: '🌟 Pristine Quality & Cloud AI',
+    riskBadge: '🛡️ Low-to-Moderate Risk',
+    momSummary: 'Microsoft powers millions of businesses worldwide with Windows, Office 365, and Azure cloud computing. They are also leading the artificial intelligence push through their partnership with OpenAI (creators of ChatGPT).',
+    ratingTitle: 'Unbeatable Enterprise Dominance Paired with Strong Cloud Growth',
+    ratingType: 'positive',
+    overview: 'Microsoft provides cloud computing infrastructure (Azure), software subscriptions (Word, Excel, Teams), Xbox gaming, and enterprise AI tools.',
+    strengths: [
+      'Immense recurring software subscription revenues from global corporate contracts.',
+      'Market leader in cloud computing alongside Amazon AWS, capturing lucrative enterprise AI workloads.',
+      'Pristine AAA financial balance sheet with vast cash flow generating capacity.'
+    ],
+    risks: [
+      'Heavy ongoing capital expenditures required to build out global AI data centers.',
+      'Regulatory oversight on major technology acquisitions and search/AI market power.',
+      'Slightly higher valuation multiple requiring sustained earnings growth.'
+    ],
+    fullReport: `### Research Summary for Microsoft Corporation (MSFT)
+
+Microsoft represents the highest tier of corporate technology investments, combining high-margin software subscriptions with aggressive leadership in cloud AI.`
+  },
+
+  MCD: {
+    ticker: 'MCD',
+    companyName: "McDonald's Corporation",
+    exchange: 'NYSE',
+    sector: 'Consumer Discretionary & Fast Food',
+    price: '298.50',
+    change: '+1.40',
+    changePercent: '+0.47%',
+    isPositive: true,
+    dayRange: '$296.80 - $299.90',
+    yearRange: '$243.50 - $302.20',
+    yearRangePct: 92,
+    marketCap: '$215 Billion',
+    peRatio: '24.8 (Dominant Franchise Leader)',
+    chartData: [288, 290, 291, 292.5, 294, 295, 297, 298, 298.50],
+    chartLabels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Today'],
+    verdictBadge: '🍔 Global Franchise Powerhouse',
+    riskBadge: '🛡️ High Stability & Income',
+    momSummary: "McDonald's operates over 40,000 fast-food locations across 100+ countries. Because most stores are franchised, McDonald's collects reliable real estate rent and royalty fees, ensuring stable profits and dependable dividend payouts.",
+    ratingTitle: 'Recession-Resilient Fast Food Leader with Strong Franchise Cash Flows',
+    ratingType: 'positive',
+    overview: "McDonald's is the world's premier quick-service restaurant chain, driven by digital ordering kiosks, drive-thru speed, and international franchise royalties.",
+    strengths: [
+      'Valuable real estate portfolio: McDonald\'s owns the land under thousands of top franchise locations.',
+      '47 consecutive years of annual dividend increases.',
+      'Unrivaled brand recognition and affordable value menu appeal during inflationary periods.'
+    ],
+    risks: [
+      'Rising labor costs and wage inflation at restaurant locations.',
+      'Changing consumer preferences toward healthier fast-casual alternatives.',
+      'Currency exchange headwinds on international royalty income.'
+    ],
+    fullReport: `### Research Summary for McDonald's Corporation (MCD)
+
+McDonald's combines premier consumer brand strength with highly profitable real estate franchising, offering reliable income and defensive growth.`
+  },
+
+  V: {
+    ticker: 'V',
+    companyName: 'Visa Inc.',
+    exchange: 'NYSE',
+    sector: 'Financial Technology & Payment Networks',
+    price: '272.10',
+    change: '+1.90',
+    changePercent: '+0.70%',
+    isPositive: true,
+    dayRange: '$270.20 - $273.50',
+    yearRange: '$228.00 - $290.90',
+    yearRangePct: 71,
+    marketCap: '$550 Billion',
+    peRatio: '28.5 (High Profit Margin Network)',
+    chartData: [262, 264, 265, 267, 268.5, 270, 271, 271.8, 272.10],
+    chartLabels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Today'],
+    verdictBadge: '💳 Global Payments Duopoly',
+    riskBadge: '🛡️ Ultra-Low Credit Risk',
+    momSummary: 'Visa processes digital credit and debit card transactions worldwide. Every time someone swipes or taps a Visa card, Visa collects a tiny fee without taking on loan credit risk. This business model generates massive profit margins.',
+    ratingTitle: 'High-Margin Tollbooth on Global Digital Commerce',
+    ratingType: 'positive',
+    overview: 'Visa operates the world\'s largest electronic retail payments network, connecting consumers, merchants, and financial institutions in over 200 countries.',
+    strengths: [
+      'Incredible net profit margins (~50%+): Visa does not lend money, eliminating loan default risk.',
+      'Unbeatable duopoly position alongside Mastercard across global merchant checkout terminals.',
+      'Long-term tailwind from the ongoing worldwide shift from paper cash to digital payments.'
+    ],
+    risks: [
+      'Government regulatory caps on merchant interchange and processing swipe fees.',
+      'Emerging real-time account-to-account payments networks and crypto alternatives.',
+      'Consumer spending pullbacks during broader economic downturns.'
+    ],
+    fullReport: `### Research Summary for Visa Inc. (V)
+
+Visa is a tollbooth on global economic activity. By facilitating digital payments without taking balance sheet credit risk, Visa maintains exceptional profit margins.`
   }
 };
 
@@ -422,9 +607,10 @@ function setupCategoryFilters() {
 
       const cat = pill.getAttribute('data-cat');
       chips.forEach(chip => {
-        const chipCat = chip.getAttribute('data-cat');
-        if (cat === 'all' || chipCat === cat) {
-          chip.style.display = 'inline-block';
+        const chipCat = chip.getAttribute('data-cat') || '';
+        const catsArray = chipCat.split(' ');
+        if (cat === 'all' || catsArray.includes(cat)) {
+          chip.style.display = 'flex';
         } else {
           chip.style.display = 'none';
         }

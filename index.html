@@ -70,23 +70,32 @@
       <!-- Quick Pick Suggestions with Emojis & Filter Tags -->
       <div class="quick-picks-container">
         <div class="quick-picks-header">
-          <span class="quick-picks-label">Popular companies to try:</span>
+          <div class="quick-picks-title-group">
+            <span class="quick-picks-label">Explore Stock Categories:</span>
+            <span class="quick-picks-sub">Click a category to filter or select any stock card below to analyze instantly</span>
+          </div>
           <div class="category-pills">
-            <button type="button" class="cat-pill active" data-cat="all">All</button>
-            <button type="button" class="cat-pill" data-cat="tech">Tech Giants</button>
-            <button type="button" class="cat-pill" data-cat="brands">Household Brands</button>
+            <button type="button" class="cat-pill active" data-cat="all">All (12)</button>
+            <button type="button" class="cat-pill" data-cat="tech">⚡ Tech & AI</button>
+            <button type="button" class="cat-pill" data-cat="dividends">💵 High Dividends</button>
+            <button type="button" class="cat-pill" data-cat="low-volatility">🛡️ Low Volatility</button>
+            <button type="button" class="cat-pill" data-cat="brands">🏠 Household Brands</button>
           </div>
         </div>
 
         <div class="quick-picks-chips" id="quick-chips-list">
-          <button type="button" class="chip" data-cat="tech" data-ticker="AAPL" data-name="Apple">🍏 Apple (AAPL)</button>
-          <button type="button" class="chip" data-cat="tech" data-ticker="MSFT" data-name="Microsoft">💻 Microsoft (MSFT)</button>
+          <button type="button" class="chip" data-cat="tech brands" data-ticker="AAPL" data-name="Apple">🍏 Apple (AAPL)</button>
+          <button type="button" class="chip" data-cat="tech low-volatility" data-ticker="MSFT" data-name="Microsoft">💻 Microsoft (MSFT)</button>
           <button type="button" class="chip" data-cat="tech" data-ticker="NVDA" data-name="Nvidia">🤖 Nvidia (NVDA)</button>
-          <button type="button" class="chip" data-cat="brands" data-ticker="TSLA" data-name="Tesla">🚗 Tesla (TSLA)</button>
-          <button type="button" class="chip" data-cat="brands" data-ticker="AMZN" data-name="Amazon">📦 Amazon (AMZN)</button>
-          <button type="button" class="chip" data-cat="brands" data-ticker="KO" data-name="Coca-Cola">🥤 Coca-Cola (KO)</button>
+          <button type="button" class="chip" data-cat="dividends low-volatility brands" data-ticker="KO" data-name="Coca-Cola">🥤 Coca-Cola (KO)</button>
+          <button type="button" class="chip" data-cat="dividends low-volatility" data-ticker="JNJ" data-name="Johnson & Johnson">🩺 Johnson & Johnson (JNJ)</button>
+          <button type="button" class="chip" data-cat="dividends low-volatility brands" data-ticker="PG" data-name="Procter & Gamble">🧼 Procter & Gamble (PG)</button>
+          <button type="button" class="chip" data-cat="dividends brands low-volatility" data-ticker="MCD" data-name="McDonald's">🍔 McDonald's (MCD)</button>
+          <button type="button" class="chip" data-cat="tech brands" data-ticker="AMZN" data-name="Amazon">📦 Amazon (AMZN)</button>
+          <button type="button" class="chip" data-cat="tech brands" data-ticker="TSLA" data-name="Tesla">🚗 Tesla (TSLA)</button>
           <button type="button" class="chip" data-cat="brands" data-ticker="DIS" data-name="Disney">🏰 Disney (DIS)</button>
-          <button type="button" class="chip" data-cat="brands" data-ticker="SBUX" data-name="Starbucks">☕ Starbucks (SBUX)</button>
+          <button type="button" class="chip" data-cat="dividends brands" data-ticker="SBUX" data-name="Starbucks">☕ Starbucks (SBUX)</button>
+          <button type="button" class="chip" data-cat="low-volatility brands" data-ticker="V" data-name="Visa">💳 Visa (V)</button>
         </div>
       </div>
     </section>
