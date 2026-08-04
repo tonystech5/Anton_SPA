@@ -620,6 +620,21 @@ const DOM = {
   resInstValue: document.getElementById('res-inst-value'),
   resInstPill: document.getElementById('res-inst-pill'),
   resInstDesc: document.getElementById('res-inst-desc'),
+  resEvebitdaValue: document.getElementById('res-evebitda-value'),
+  resEvebitdaPill: document.getElementById('res-evebitda-pill'),
+  resEvebitdaDesc: document.getElementById('res-evebitda-desc'),
+  resRoicValue: document.getElementById('res-roic-value'),
+  resRoicPill: document.getElementById('res-roic-pill'),
+  resRoicDesc: document.getElementById('res-roic-desc'),
+  resIvValue: document.getElementById('res-iv-value'),
+  resIvPill: document.getElementById('res-iv-pill'),
+  resIvDesc: document.getElementById('res-iv-desc'),
+  resLeverageValue: document.getElementById('res-leverage-value'),
+  resLeveragePill: document.getElementById('res-leverage-pill'),
+  resLeverageDesc: document.getElementById('res-leverage-desc'),
+  resInsiderValue: document.getElementById('res-insider-value'),
+  resInsiderPill: document.getElementById('res-insider-pill'),
+  resInsiderDesc: document.getElementById('res-insider-desc'),
   
   resRatingBanner: document.getElementById('res-rating-banner'),
   resRatingIcon: document.getElementById('res-rating-icon'),
@@ -1201,6 +1216,41 @@ function renderProfiIndicatorsCard(data) {
     DOM.resInstPill.className = `profi-status-pill ${profi.instClass || 'positive'}`;
   }
   if (DOM.resInstDesc) DOM.resInstDesc.textContent = profi.instDesc;
+
+  if (DOM.resEvebitdaValue) DOM.resEvebitdaValue.textContent = profi.evebitdaValue || '16.8x';
+  if (DOM.resEvebitdaPill) {
+    DOM.resEvebitdaPill.textContent = profi.evebitdaPill || '💰 5.8% FCF Yield to Firm';
+    DOM.resEvebitdaPill.className = `profi-status-pill ${profi.evebitdaClass || 'positive'}`;
+  }
+  if (DOM.resEvebitdaDesc) DOM.resEvebitdaDesc.textContent = profi.evebitdaDesc || 'Attractive cash generation relative to enterprise value, suitable for LBO & buyout models.';
+
+  if (DOM.resRoicValue) DOM.resRoicValue.textContent = profi.roicValue || '22.4% ROIC';
+  if (DOM.resRoicPill) {
+    DOM.resRoicPill.textContent = profi.roicPill || '🏰 +14.2% Moat Value Spread';
+    DOM.resRoicPill.className = `profi-status-pill ${profi.roicClass || 'positive'}`;
+  }
+  if (DOM.resRoicDesc) DOM.resRoicDesc.textContent = profi.roicDesc || 'Generates $22.40 of operating profit for every $100 of invested capital vs 8.2% WACC hurdle.';
+
+  if (DOM.resIvValue) DOM.resIvValue.textContent = profi.ivValue || '24.5% IV';
+  if (DOM.resIvPill) {
+    DOM.resIvPill.textContent = profi.ivPill || '⚡ Expected Move: ±4.2%';
+    DOM.resIvPill.className = `profi-status-pill ${profi.ivClass || 'neutral'}`;
+  }
+  if (DOM.resIvDesc) DOM.resIvDesc.textContent = profi.ivDesc || 'Options pricing reflects moderate implied volatility percentile across options markets.';
+
+  if (DOM.resLeverageValue) DOM.resLeverageValue.textContent = profi.leverageValue || '0.85x';
+  if (DOM.resLeveragePill) {
+    DOM.resLeveragePill.textContent = profi.leveragePill || '🟢 Pristine Balance Sheet';
+    DOM.resLeveragePill.className = `profi-status-pill ${profi.leverageClass || 'positive'}`;
+  }
+  if (DOM.resLeverageDesc) DOM.resLeverageDesc.textContent = profi.leverageDesc || 'Low leverage provides ample financial headroom for bolt-on M&A or share buybacks.';
+
+  if (DOM.resInsiderValue) DOM.resInsiderValue.textContent = profi.insiderValue || 'Net Buyers';
+  if (DOM.resInsiderPill) {
+    DOM.resInsiderPill.textContent = profi.insiderPill || '👔 CEO/CFO Open Market Buys';
+    DOM.resInsiderPill.className = `profi-status-pill ${profi.insiderClass || 'positive'}`;
+  }
+  if (DOM.resInsiderDesc) DOM.resInsiderDesc.textContent = profi.insiderDesc || 'Executive team has added $4.2M in personal open-market share purchases recently.';
 }
 
 function getProfiMetrics(stock) {
@@ -1279,7 +1329,27 @@ function getProfiMetrics(stock) {
     instValue: '84.2%',
     instPill: '🏛️ High Smart Money Backing',
     instClass: 'positive',
-    instDesc: 'Solid backing from institutional funds, 13F filings, and pension desks.'
+    instDesc: 'Solid backing from institutional funds, 13F filings, and pension desks.',
+    evebitdaValue: '16.8x',
+    evebitdaPill: '💰 5.8% FCF Yield to Firm',
+    evebitdaClass: 'positive',
+    evebitdaDesc: 'Attractive cash generation relative to enterprise value, suitable for LBO & buyout models.',
+    roicValue: '22.4% ROIC',
+    roicPill: '🏰 +14.2% Moat Value Spread',
+    roicClass: 'positive',
+    roicDesc: 'Generates $22.40 of operating profit for every $100 of invested capital vs 8.2% WACC hurdle.',
+    ivValue: '24.5% IV',
+    ivPill: '⚡ Expected Move: ±4.2%',
+    ivClass: 'neutral',
+    ivDesc: 'Options pricing reflects moderate implied volatility percentile across options markets.',
+    leverageValue: '0.85x',
+    leveragePill: '🟢 Pristine Balance Sheet',
+    leverageClass: 'positive',
+    leverageDesc: 'Low leverage provides ample financial headroom for bolt-on M&A or share buybacks.',
+    insiderValue: 'Net Buyers',
+    insiderPill: '👔 CEO/CFO Open Market Buys',
+    insiderClass: 'positive',
+    insiderDesc: 'Executive team has added $4.2M in personal open-market share purchases recently.'
   };
 }
 

@@ -443,13 +443,78 @@
           <div class="profi-metric-item">
             <div class="profi-metric-top">
               <span class="profi-metric-name">
-                Institutional Ownership
-                <button type="button" class="info-help-btn" data-tooltip="Percentage of outstanding shares held by institutional funds, pension funds, and 13F filings.">ℹ️</button>
+                Institutional & 13F Flow
+                <button type="button" class="info-help-btn" data-tooltip="Percentage of outstanding shares held by institutional hedge funds, pension desks, and quarterly 13F filings.">ℹ️</button>
               </span>
               <span id="res-inst-value" class="profi-metric-value">84.2%</span>
             </div>
-            <div class="profi-status-pill positive" id="res-inst-pill">🏛️ High Smart Money Backing</div>
-            <p id="res-inst-desc" class="profi-metric-desc">Strong backing from Vanguard, BlackRock, and institutional desks.</p>
+            <div class="profi-status-pill positive" id="res-inst-pill">🏛️ Smart Money Net Accumulation</div>
+            <p id="res-inst-desc" class="profi-metric-desc">Strong backing from Vanguard, BlackRock, and top institutional desks.</p>
+          </div>
+
+          <!-- EV / EBITDA Multiple & FCF Yield -->
+          <div class="profi-metric-item">
+            <div class="profi-metric-top">
+              <span class="profi-metric-name">
+                EV / EBITDA & FCF Yield
+                <button type="button" class="info-help-btn" data-tooltip="Enterprise Value divided by EBITDA (core M&A / LBO valuation benchmark) and Free Cash Flow Yield to Firm.">ℹ️</button>
+              </span>
+              <span id="res-evebitda-value" class="profi-metric-value">16.8x</span>
+            </div>
+            <div class="profi-status-pill positive" id="res-evebitda-pill">💰 5.8% FCF Yield to Firm</div>
+            <p id="res-evebitda-desc" class="profi-metric-desc">Attractive cash generation relative to enterprise value, suitable for LBO & buyout models.</p>
+          </div>
+
+          <!-- ROIC vs WACC Spread -->
+          <div class="profi-metric-item">
+            <div class="profi-metric-top">
+              <span class="profi-metric-name">
+                ROIC vs. WACC Spread
+                <button type="button" class="info-help-btn" data-tooltip="Return on Invested Capital vs Weighted Average Cost of Capital. A positive spread (>5%) confirms a widening economic moat.">ℹ️</button>
+              </span>
+              <span id="res-roic-value" class="profi-metric-value">22.4% ROIC</span>
+            </div>
+            <div class="profi-status-pill positive" id="res-roic-pill">🏰 +14.2% Moat Value Spread</div>
+            <p id="res-roic-desc" class="profi-metric-desc">Generates $22.40 of operating profit for every $100 of invested capital vs 8.2% WACC hurdle.</p>
+          </div>
+
+          <!-- Options Implied Volatility (IV) & Earnings Straddle -->
+          <div class="profi-metric-item">
+            <div class="profi-metric-top">
+              <span class="profi-metric-name">
+                Implied Volatility (IV 30D)
+                <button type="button" class="info-help-btn" data-tooltip="30-day Options Implied Volatility and expected earnings straddle price movement price tag.">ℹ️</button>
+              </span>
+              <span id="res-iv-value" class="profi-metric-value">24.5% IV</span>
+            </div>
+            <div class="profi-status-pill neutral" id="res-iv-pill">⚡ Expected Move: ±4.2%</div>
+            <p id="res-iv-desc" class="profi-metric-desc">Options pricing reflects moderate implied volatility percentile across options markets.</p>
+          </div>
+
+          <!-- Net Debt / EBITDA (Leverage Ratio) -->
+          <div class="profi-metric-item">
+            <div class="profi-metric-top">
+              <span class="profi-metric-name">
+                Net Debt / EBITDA
+                <button type="button" class="info-help-btn" data-tooltip="Net Debt divided by EBITDA. Under 2.0x indicates clean balance sheet and high debt capacity for M&A.">ℹ️</button>
+              </span>
+              <span id="res-leverage-value" class="profi-metric-value">0.85x</span>
+            </div>
+            <div class="profi-status-pill positive" id="res-leverage-pill">🟢 Pristine Balance Sheet</div>
+            <p id="res-leverage-desc" class="profi-metric-desc">Low leverage provides ample financial headroom for bolt-on M&A or share buybacks.</p>
+          </div>
+
+          <!-- Insider Open Market Transactions -->
+          <div class="profi-metric-item">
+            <div class="profi-metric-top">
+              <span class="profi-metric-name">
+                Insider & C-Suite Buying
+                <button type="button" class="info-help-btn" data-tooltip="SEC Form 4 filings tracking open-market purchases by executive officers and board directors over the last 6 months.">ℹ️</button>
+              </span>
+              <span id="res-insider-value" class="profi-metric-value">Net Buyers</span>
+            </div>
+            <div class="profi-status-pill positive" id="res-insider-pill">👔 CEO/CFO Open Market Buys</div>
+            <p id="res-insider-desc" class="profi-metric-desc">Executive team has added $4.2M in personal open-market share purchases recently.</p>
           </div>
         </div>
       </div>
