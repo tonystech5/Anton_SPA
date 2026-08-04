@@ -547,6 +547,71 @@ body {
   font-weight: 500;
 }
 
+/* ESG Overview Badges & Sub-metrics */
+.esg-overview-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+}
+
+.esg-overview-badge.esg-green {
+  background: #ECFDF5;
+  color: #047857;
+  border-color: #A7F3D0;
+}
+
+.esg-overview-badge.esg-yellow {
+  background: #FEF3C7;
+  color: #B45309;
+  border-color: #FDE68A;
+}
+
+.esg-overview-badge.esg-red {
+  background: #FEF2F2;
+  color: #B91C1C;
+  border-color: #FCA5A5;
+}
+
+.verdict-pill.esg-pill.positive {
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+
+.verdict-pill.esg-pill.neutral {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+
+.verdict-pill.esg-pill.warning {
+  background: #FEF2F2;
+  color: #B91C1C;
+  border: 1px solid #FCA5A5;
+}
+
+.esg-sub-metrics-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin: 0.15rem 0;
+}
+
+.esg-sub-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #334155;
+}
+
 .btn-outline-purple {
   background: #F3E8FF;
   border: 1px solid #D8B4FE;

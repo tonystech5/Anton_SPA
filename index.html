@@ -218,6 +218,16 @@
             </div>
             <div class="metric-value" id="res-pe-ratio">29.8 (Premium)</div>
           </div>
+
+          <div class="metric-card">
+            <div class="metric-label">
+              ESG Sustainability
+              <button type="button" class="info-help-btn" data-tooltip="Environmental, Social & Governance rating for everyday investors. Green = Responsible & Clean; Yellow = Average; Red = High environmental or ethical risk.">ℹ️</button>
+            </div>
+            <div class="metric-value" id="res-overview-esg">
+              <span id="res-esg-overview-badge" class="esg-overview-badge esg-green">🌱 Green (Low Risk)</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -235,6 +245,7 @@
           <div class="verdict-pill-row">
             <span id="res-verdict-badge" class="verdict-pill positive">🟢 Strong Quality Cornerstone</span>
             <span id="res-risk-badge" class="verdict-pill neutral">🛡️ Moderate Risk</span>
+            <span id="res-esg-badge" class="verdict-pill esg-pill positive">🌱 ESG: Green (Low Risk)</span>
           </div>
           <p id="res-mom-summary-text" class="mom-summary-text">
             Apple makes products millions of people use every day. They earn steady cash from iPhones and recurring subscriptions like iCloud, making this a reliable long-term business with low-to-moderate risk.
@@ -516,6 +527,24 @@
             <div class="profi-status-pill positive" id="res-insider-pill">👔 CEO/CFO Open Market Buys</div>
             <p id="res-insider-desc" class="profi-metric-desc">Executive team has added $4.2M in personal open-market share purchases recently.</p>
           </div>
+
+          <!-- ESG Risk Rating & Corporate Governance Deep-Dive -->
+          <div class="profi-metric-item profi-esg-card-item">
+            <div class="profi-metric-top">
+              <span class="profi-metric-name">
+                ESG Risk & Governance (Sustainalytics)
+                <button type="button" class="info-help-btn" data-tooltip="Comprehensive ESG score. Lower risk score (0–20 = Low Risk, 20–30 = Medium Risk, 30+ = High Risk). Evaluates Environmental impact, Social labor standards, and Corporate Governance.">ℹ️</button>
+              </span>
+              <span id="res-esg-score-value" class="profi-metric-value">16.2 / 100</span>
+            </div>
+            <div class="profi-status-pill positive" id="res-esg-pill">🌱 Low ESG Risk (Top 8% Sector Score)</div>
+            <div class="esg-sub-metrics-row">
+              <span class="esg-sub-badge" id="res-esg-e">🍃 Env: 8.4/10</span>
+              <span class="esg-sub-badge" id="res-esg-s">👥 Soc: 7.9/10</span>
+              <span class="esg-sub-badge" id="res-esg-g">🏛️ Gov: 9.1/10</span>
+            </div>
+            <p id="res-esg-desc" class="profi-metric-desc">Strong ethical governance, 100% carbon neutral target by 2030, and high compliance with SFDR Article 8/9 institutional funds.</p>
+          </div>
         </div>
       </div>
 
@@ -688,6 +717,11 @@
           <div class="glossary-item">
             <div class="glossary-term">🏛️ Institutional Ownership</div>
             <div class="glossary-def">The percentage of stock owned by smart-money institutions, hedge funds, mutual funds, and 13F filings.</div>
+          </div>
+
+          <div class="glossary-item">
+            <div class="glossary-term">🌱 ESG Rating (Environmental, Social & Governance)</div>
+            <div class="glossary-def">Measures how responsibly a company treats the planet (E), employees & communities (S), and corporate ethics & board oversight (G). Green = clean & ethical; Yellow = average; Red = high environmental or governance risk.</div>
           </div>
         </div>
       </div>
